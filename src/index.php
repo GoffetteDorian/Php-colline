@@ -2,23 +2,16 @@
 
 
 <?php
-  require_once("./config.php");
-  $pdo = db_connect();
+  $request = $_SERVER['REQUEST_URI'];
+  switch($request){
+    case '/': 
+      require __DIR__ . '/view/index.php';
+      break;
 
-  require_once("./model/model.php");
-
-  $titre = "index"; 
-  require("./view/head.php");
-
-  $boards = getBoards($pdo);
-  require("./view/navbar.php");
- 
-  $users = getUsers($pdo);
-  foreach($users as $row) {
-      echo "<pre>";  
-      print_r($row);
-      echo "</pre><br/>";
+    default: 
+      http_response_code(404);
+      require __DIR__ . '/view/404.php';
+      break;
   }
-
   require('./view/foot.php');
 ?>
