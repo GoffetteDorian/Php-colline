@@ -2,7 +2,9 @@
 
 
 <?php
+  // require_once("./config.php");
   $request = $_SERVER['REQUEST_URI'];
+  
   switch($request){
     case '/': 
       require __DIR__ . '/view/index.php';

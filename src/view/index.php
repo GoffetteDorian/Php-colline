@@ -10,17 +10,15 @@
   $titre = "index"; 
   require("./view/head.php");
 
+ // $test = getUsers($pdo);
+
   $boards = getBoards($pdo);
   require("./view/navbar.php");
 
-  echo getcwd();
-  
-  // $users = getUsers($pdo);
-  // foreach($users as $row) {
-  //     echo "<pre>";  
-  //     print_r($row);
-  //     echo "</pre><br/>";
-  // }
+  $currentBoard = "General";
+  $topics = getCurrentTopics($pdo, $currentBoard);
+  $messages = getTopicsMessages($pdo, 1); 
+  require("./view/topics.php");
 
 
   
