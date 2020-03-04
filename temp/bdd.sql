@@ -8,17 +8,17 @@
 -- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema heroku_4a25fe8af1897c7
+-- Schema mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema heroku_4a25fe8af1897c7
+-- Schema mydb
 -- -----------------------------------------------------
--- CREATE SCHEMA IF NOT EXISTS `heroku_4a25fe8af1897c7` DEFAULT CHARACTER SET utf8 ;
--- USE `heroku_4a25fe8af1897c7` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `heroku_4a25fe8af1897c7`.`users`
+-- Table `mydb`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users` (
   `idusers` INT NOT NULL AUTO_INCREMENT,
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `heroku_4a25fe8af1897c7`.`boards`
+-- Table `mydb`.`boards`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `boards` (
   `idboards` INT NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `heroku_4a25fe8af1897c7`.`topics`
+-- Table `mydb`.`topics`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `topics` (
   `idtopics` INT NOT NULL AUTO_INCREMENT,
@@ -62,19 +62,19 @@ CREATE TABLE IF NOT EXISTS `topics` (
   INDEX `fk_topics_boards1_idx` (`boards_idboards` ASC),
   CONSTRAINT `fk_topics_users1`
     FOREIGN KEY (`users_idusers`)
-    REFERENCES `heroku_4a25fe8af1897c7`.`users` (`idusers`)
+    REFERENCES `mydb`.`users` (`idusers`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_topics_boards1`
     FOREIGN KEY (`boards_idboards`)
-    REFERENCES `heroku_4a25fe8af1897c7`.`boards` (`idboards`)
+    REFERENCES `mydb`.`boards` (`idboards`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `heroku_4a25fe8af1897c7`.`messages`
+-- Table `mydb`.`messages`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `messages` (
   `idmessages` INT NOT NULL AUTO_INCREMENT,
@@ -89,12 +89,12 @@ CREATE TABLE IF NOT EXISTS `messages` (
   INDEX `fk_messages_topics1_idx` (`topics_idtopics` ASC),
   CONSTRAINT `fk_messages_users1`
     FOREIGN KEY (`users_idusers`)
-    REFERENCES `heroku_4a25fe8af1897c7`.`users` (`idusers`)
+    REFERENCES `mydb`.`users` (`idusers`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_messages_topics1`
     FOREIGN KEY (`topics_idtopics`)
-    REFERENCES `heroku_4a25fe8af1897c7`.`topics` (`idtopics`)
+    REFERENCES `mydb`.`topics` (`idtopics`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
