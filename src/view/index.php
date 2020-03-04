@@ -23,6 +23,9 @@
   // }
 
 
-  $pdo = null; //Close the connection
+  
   require('./view/foot.php');
+
+
+  $pdo = null; //Close the connection
 ?>

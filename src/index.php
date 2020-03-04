@@ -13,5 +13,4 @@
       require __DIR__ . '/view/404.php';
       break;
   }
-  require('./view/foot.php');
 ?>
