@@ -23,6 +23,7 @@ function getCurrentTopics($pdo, $board){
   return $result;
 }
 
+
 function getTopicsMessages($pdo, $topic){
   $sql = 'SELECT content, username
           FROM messages 
