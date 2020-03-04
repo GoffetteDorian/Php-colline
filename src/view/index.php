@@ -12,18 +12,18 @@
 
  // $test = getUsers($pdo);
 
-  $boards = getBoards($pdo);
   require("./view/navbar.php");
 
-  $currentBoard = "General";
-  $topics = getCurrentTopics($pdo, $currentBoard);
-  $messages = getTopicsMessages($pdo, 1); 
-  require("./view/topics.php");
-
-
+  $boards = getBoards($pdo);
+  
+    require("./view/boards.php");
+  
+  
+    // $topics = getCurrentTopics($pdo, $_GET["board"]);
+    // require("./view/topics.php");
+  
   
   require('./view/foot.php');
-
 
   $pdo = null; //Close the connection
 ?>
