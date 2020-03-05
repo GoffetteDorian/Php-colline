@@ -1,11 +1,10 @@
-
-
-
 <?php
+  //session_start();
   require_once("./config.php");
   $pdo = db_connect(); //Connect to the db
 
   require_once("./model/model.php");
+  //$_SESSION["user"] = getUser($pdo, "Dorian");
 
   $titre = "index"; 
   require("./view/head.php");

@@ -1,9 +1,9 @@
 <?php 
-function getUsers($pdo){
-  $sql = 'SELECT * FROM users';
+function getUser($pdo, $name){
+  $sql = 'SELECT * FROM users WHERE username = "' . $name . '"';
   $sth = $pdo->prepare($sql);
   $sth->execute();
-  $result = $sth->fetchAll();
+  $result = $sth->fetch();
   return $result;
 }
 
