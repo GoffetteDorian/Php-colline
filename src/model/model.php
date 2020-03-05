@@ -1,4 +1,6 @@
 <?php 
+
+//Get an user by its name
 function getUser($pdo, $name){
   $sql = 'SELECT * FROM users WHERE username = "' . $name . '"';
   $sth = $pdo->prepare($sql);

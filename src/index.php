@@ -1,6 +1,3 @@
-
-
-
 <?php
   // require_once("./config.php");
   $request = $_SERVER['REQUEST_URI'];

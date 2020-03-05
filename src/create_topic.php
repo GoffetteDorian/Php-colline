@@ -1,16 +1,22 @@
 <?php
+  session_start();
   require_once("config.php");
-  $pdo = db_connect();
-  
-  
+  $pdo = db_connect(); 
+
+  require_once("./model/model.php");
 
   //to be changed when user is logged in
-  print_r($_SESSION["user"]);
+  $parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
+  parse_str($parse, $queries);
 
-  // $sql = "";
-  // $sth = $pdo->prepare($sql);
-  // $sth->execute();
-  // $result = $sth->fetchAll();
-  // print_r ($result);   
-  // header('Location: ' . $_SERVER['HTTP_REFERER']);
+  $idUser = $_SESSION["user"]["idusers"];
+  $idBoard = getBoardByName($pdo, $queries["board"])["idboards"];
+  $title = $_POST["title"];
+
+  $sql = 'INSERT INTO topics (title, creation_date, users_idusers, boards_idboards)
+          VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
+  $sth = $pdo->prepare($sql);
+  $sth->execute();
+   
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
