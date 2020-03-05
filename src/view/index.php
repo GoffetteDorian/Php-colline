@@ -13,8 +13,14 @@
 
   require("./view/navbar.php");
 
-  $boards = getBoards($pdo);
-  require("./view/boards.php");
+  
+
+  if(!isset($_GET["topic"])){
+    require("./view/boards.php");
+  }
+  else{
+    require("./view/topics.php");
+  }
   
   
     // $topics = getCurrentTopics($pdo, $_GET["board"]);

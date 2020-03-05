@@ -69,6 +69,15 @@ function getCurrentTopics($pdo, $board){
 //   return $result;
 // }
 
+function getCurrentTopic($pdo, $title){
+  $sql = 'SELECT * FROM topics WHERE title = "' . $title . '"';
+  $sth = $pdo->prepare($sql);
+  $sth->execute();
+  $result = $sth->fetch();
+  return $result;
+}
+
+
 // Get the list of messages from a given topic id with a limit of how many messages to be collected
 function getTopicsMessages($pdo, $topic, $limit = NULL){
   $sql = 'SELECT content, username, messages.creation_date
@@ -76,8 +85,7 @@ function getTopicsMessages($pdo, $topic, $limit = NULL){
           JOIN topics ON topics_idtopics = topics.idtopics 
           JOIN users ON messages.users_idusers = users.idusers 
           WHERE topics.idtopics = ' . $topic . '
-          ORDER BY messages.creation_date
-          DESC';
+          ORDER BY messages.creation_date';
 
   if($limit != NULL){
     $sql = $sql . ' LIMIT ' . $limit; 

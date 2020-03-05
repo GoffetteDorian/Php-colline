@@ -1,7 +1,9 @@
 <!-- REQUIRE DESIGNING -->
 <div class="container">
 
-<?php if(!isset($_GET["board"])){ ?>
+<?php 
+  $boards = getBoards($pdo);
+  if(!isset($_GET["board"])){ ?>
 
   <!-- Showing list of all boards if no board is already selected (on index) -->
   <ul class="list-group">
@@ -17,7 +19,7 @@
           <ul class="list-group">
             <?php $topics = getLatestTopics($pdo, $board["idboards"]);
             foreach($topics as $topic){ ?>
-              <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>?topic=<?php echo $topic["title"]; ?>">
+              <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
                 <h4><?php echo $topic["title"] ?></h4>
               </a>
               <p><?php echo $topic["creation_date"]; ?></p>
@@ -61,25 +63,23 @@ else{
   <!-- Showing the list of all topics -->
   
   <ul class="list-group">
-  <?php 
-  $topics = getCurrentTopics($pdo, $_GET["board"]);
-  foreach($topics as $topic){ ?>
-    <li class="list-group-item">
-    <div class="row">
-      <div class="col-sm-6">
-      <a href="index.php?board=<?php echo $_GET["board"]; ?>?topic=<?php echo $topic["title"]; ?>">
-        <h3><?php echo $topic["title"]; ?></h3>
-      </a>
-      </div>
-      <div class="col-sm-6">
-        <p><?php echo $topic["creation_date"]; ?></p>
-      </div>
-    </div>
-    </li>
-    
-  <?php } ?>
+    <?php 
+    $topics = getCurrentTopics($pdo, $_GET["board"]);
+    foreach($topics as $topic){ ?>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-6">
+            <a href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
+              <h3><?php echo $topic["title"]; ?></h3>
+            </a>
+          </div>
+          <div class="col-sm-6">
+            <p><?php echo $topic["creation_date"]; ?></p>
+          </div>
+        </div>
+      </li>
+    <?php } ?>
   </ul>
   
 <?php }?>
-
 </div>
