@@ -16,8 +16,18 @@ function getBoards($pdo){
   return $result;
 }
 
+// Get the board corresponding to $name
+function getBoardByName($pdo, $name){
+  $sql = 'SELECT * FROM boards WHERE name = "' . $name . '"';
+  $sth = $pdo->prepare($sql);
+  $sth->execute();
+  $result = $sth->fetch();
+  return $result;
+}
+
+// Get topics with latest message from a given board
 function getLatestTopics($pdo, $board){
-  $sql = 'SELECT title FROM topics 
+  $sql = 'SELECT title, topics.creation_date FROM topics 
           INNER JOIN messages ON idtopics = messages.topics_idtopics
           WHERE topics.boards_idboards = (SELECT idboards FROM boards WHERE idboards = ' . $board . ') 
           GROUP BY idtopics

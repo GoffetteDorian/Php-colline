@@ -15,8 +15,7 @@
   require("./view/navbar.php");
 
   $boards = getBoards($pdo);
-  
-    require("./view/boards.php");
+  require("./view/boards.php");
   
   
     // $topics = getCurrentTopics($pdo, $_GET["board"]);
