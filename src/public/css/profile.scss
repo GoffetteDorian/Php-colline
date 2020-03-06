@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e2e2e2;
+    height: 100vh;
+}
+
+#profile .container #profile-row #profile-column #profile-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: auto;
+    box-shadow: 10px 5px 5px #17a2b8;
+    background-color: #fff;
+    border-radius: 6px;
+
+}
+
+#profile .container #profile-row #profile-column #profile-box #profile-form {
+    padding: 20px;
+}
+
+#profile .container #profile-row #profile-column #profile-box #profile-form #profile-link {
+    margin-top: -85px;
+}
