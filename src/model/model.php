@@ -86,7 +86,7 @@ function getCurrentTopic($pdo, $title){
 
 // Get the list of messages from a given topic id with a limit of how many messages to be collected
 function getTopicsMessages($pdo, $topic, $limit = NULL){
-  $sql = 'SELECT content, username, messages.creation_date
+  $sql = 'SELECT content, username, signature, messages.creation_date
           FROM messages 
           JOIN topics ON topics_idtopics = topics.idtopics 
           JOIN users ON messages.users_idusers = users.idusers 

@@ -40,6 +40,7 @@ else{
     <p><?php echo $currentBoard["description"]; ?></p>   
   </div>
 
+  <?php require("./view/breadcrumb.php") ?>
   <!-- Creation of new topic in board -->
   <div class="card">
     <div class="card-body">

@@ -1,11 +1,13 @@
 <?php $topic = getCurrentTopic($pdo, $_GET["topic"]); ?>
 
 <div class="container">
-
-  <!-- Showing all messages -->
   <div class="py-5 text-center">
     <h3><?php echo $topic["title"]; ?></h3>
   </div>
+
+  <?php require("./view/breadcrumb.php") ?>
+
+  <!-- Showing all messages -->
   <ul class="list-group">
     <?php 
       $messages = getTopicsMessages($pdo, $topic["idtopics"]); 
@@ -14,6 +16,10 @@
         <div class="row">
           <div class="col-sm-10">
             <?php echo $message["content"]; ?>
+            <hr />
+            <div class="text-center">
+              <?php echo $message["signature"]; ?>
+            </div>
           </div>
           <div class="card col-sm-2">
             <div class="card-body">

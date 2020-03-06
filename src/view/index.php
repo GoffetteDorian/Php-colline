@@ -4,7 +4,7 @@
   $pdo = db_connect(); //Connect to the db
 
   require_once("./model/model.php");
-  $_SESSION["user"] = getUser($pdo, "Dorian");
+  $_SESSION["user"] = getUser($pdo, "test");
 
   $titre = "index"; 
   require("./view/head.php");

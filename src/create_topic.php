@@ -5,7 +5,6 @@
 
   require_once("./model/model.php");
 
-  //to be changed when user is logged in
   $parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
   parse_str($parse, $queries);
 
@@ -18,6 +17,7 @@
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $sth->closeCursor();
-   
+
+  //redirect to previous url
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
