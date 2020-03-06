@@ -6,6 +6,7 @@ function getUser($pdo, $name){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetch();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -15,6 +16,7 @@ function getBoards($pdo){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetchAll();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -24,6 +26,7 @@ function getBoardByName($pdo, $name){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetch();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -38,6 +41,7 @@ function getLatestTopics($pdo, $board){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetchAll();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -47,6 +51,7 @@ function getCurrentTopics($pdo, $board){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetchAll();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -74,6 +79,7 @@ function getCurrentTopic($pdo, $title){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetch();
+  $sth->closeCursor();
   return $result;
 }
 
@@ -94,6 +100,7 @@ function getTopicsMessages($pdo, $topic, $limit = NULL){
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $result = $sth->fetchAll();
+  $sth->closeCursor();
   return $result;
 }
 

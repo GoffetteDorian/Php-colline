@@ -32,7 +32,7 @@
   <!-- Creating a new message -->
   <div class="card">
     <div class="card-body">
-      <form action="create_message.php">
+      <form action="create_message.php" method="POST">
         <div class="row">
           <div class="col-md-10">
             <label for="content">New message</label>

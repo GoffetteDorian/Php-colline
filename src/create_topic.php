@@ -17,6 +17,7 @@
           VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
   $sth = $pdo->prepare($sql);
   $sth->execute();
+  $sth->closeCursor();
    
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
