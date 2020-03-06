@@ -1,4 +1,4 @@
-<?php include('../model/config.php') ?>
+<?php include('../model/config.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./public/css/profile.scss">
+    <link rel="stylesheet" type="text/css" href="../public/css/profile.scss">
 </head>
 
 <body>
@@ -60,13 +60,13 @@
                                     value="Change Password"><br>
                                     <?php
                                     if (isset($_POST['password_change'])) {
-                                        echo '<label for="password_old" class="text-info" >Enter Old Password:</label><br>';
-                                        echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
-                                        echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
-                                        echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
-                                        echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
-                                        echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
-                                        echo '<input type="submit" name="submit_pass" id="submit_pass" class="form-control"  value="" ><br>';
+     echo '<label for="password_old" class="text-info" >Enter Old Password:</label><br>';
+     echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
+     echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
+     echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
+     echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
+     echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
+     echo '<input type="submit" name="submit_pass" id="submit_pass" class="btn btn-info btn-md"  value="Submit" ><br>';
                                     }
 
                                     if (isset($_POST['submit_pass'])) {
@@ -124,7 +124,15 @@
                                     value="REALLY?"><br>';
                                     }
                                     if (isset($_POST['delete_confirm'])){
+                                        
+                                        delete_profile($db);
+                                        // logout();
                                         echo 'deleted';
+                                        // $email = $_SESSION['email'];
+                                        // $query = "DELETE FROM users WHERE email='$email'";
+                                        // $sql = mysqli_query($db, $query);
+                                        // logout();
+                                        // echo 'deleted';
                                     }
 ?>
                             </div>

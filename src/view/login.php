@@ -1,12 +1,16 @@
-<?php include('../model/config.php') ?>
-
+<?php include('../model/config.php'); ?>
+<?php
+                                if (isset($_POST['submit'])) {
+                                    login($db);
+                                }
+                                ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Login</title>
  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <link rel="stylesheet" type="text/css" href="./public/css/login.css">
+ <link rel="stylesheet" type="text/css" href="../public/css/login.css">
 
 </head>
 <body>
@@ -27,12 +31,13 @@
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="lost_pass" class="text-info"><span>Forgot password?</span><br>
+                                <a href="./forgot.php"><button class="btn btn-info btn-md" type="button">Forgot Password?</button></a><br><br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
 
                             </div>
-                            <div id="register-link" class="text-right">
+                            <div id="register-link" class="form-group text-right">
                                 <a href="register.php" class="text-info">Register here</a>
+                            
                             </div>
                         </form>
                     </div>

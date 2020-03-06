@@ -11,8 +11,31 @@ $errors = array();
 // $db = mysqli_connect('eu-cdbr-west-02.cleardb.net', 'b6ce3f355cfde8', 'fd44f147', 'heroku_4a25fe8af1897c7');
 $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
 
-// REGISTER USER
-if (isset($_POST['register'])) {
+function delete_profile($db){
+    // $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
+     $email = $_SESSION['email'];
+     $query = "DELETE FROM users WHERE email='$email'";
+     mysqli_query($db, $query);     
+}
+
+function logout()
+{
+    // Initialize the session
+    session_start();
+
+    // Unset all of the session variables
+    $_SESSION = array();
+
+    // Destroy the session.
+    session_destroy();
+
+    // Redirect to login page
+    echo '<meta http-equiv="refresh" content="1;URL=login.php">';
+    
+}
+
+
+function register($db){
     // receive all input values from the form
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -54,8 +77,6 @@ if (isset($_POST['register'])) {
         }
     }
 
-    // Finally, register user if there are no errors in the form
-    if (count($errors) == 0) {
         $password = md5($password_1); //encrypt the password before saving in the database
 
         $query = "INSERT INTO users (username, email, password) 
@@ -63,12 +84,12 @@ if (isset($_POST['register'])) {
         mysqli_query($db, $query);
         $_SESSION['email'] = $email;
         $_SESSION['success'] = 'You are now logged in';
-        header('location: home.php');
+        header('location: ../index.php');
     }
-}
-// LOGIN USER
 
-if (isset($_POST['submit'])) {
+
+
+function login($db) {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
@@ -79,8 +100,7 @@ if (isset($_POST['submit'])) {
         array_push($errors, 'Password is required');
     }
 
-    if (count($errors) == 0) {
-        $password = md5($password);
+    $password = md5($password);
         $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $results = mysqli_query($db, $query);
         //    echo $_SESSION['password'];
@@ -94,7 +114,6 @@ if (isset($_POST['submit'])) {
             array_push($errors, 'Wrong email/password combination');
         }
     }
-}
 
 // //NEW PASSWORD
 
@@ -105,34 +124,14 @@ if (isset($_POST['submit'])) {
 
 // var_dump($change_usr);
                           
-?>
-<?php
-function logout()
-{
-    // Initialize the session
-    session_start();
-
-    // Unset all of the session variables
-    $_SESSION = array();
-
-    // Destroy the session.
-    session_destroy();
-
-    // Redirect to login page
-    echo '<meta http-equiv="refresh" content="1;URL=login.php">';
-    
-}
-?>
-<?php
 //AVATAR
 
     $email = $_SESSION['email'];
 
     $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
 
+
   
-function signature_change(){
-    
-}
+
 
 ?>
