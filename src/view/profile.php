@@ -5,10 +5,10 @@
 <head>
     <title>Profile</title>
 
-
+<!-- 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../public/css/profile.scss">
+    <link rel="stylesheet" type="text/css" href="../public/css/profile.scss"> -->
 </head>
 
 <body>
@@ -19,7 +19,15 @@
                 <div id="profile-column" class="col-md-6">
                     <div id="profile-box" class="col-md-12">
                         <form id="profile-form" class="form" action="profile.php" method="post">
-                            <h3 class="text-center text-info">Profile</h3>
+                            <h3 class="text-center text-info">
+                            <?php 
+                            $email = $_SESSION['email'];
+                            $query= "SELECT username FROM users WHERE email='$email'";
+                            $result = mysqli_query($db, $query);
+                            $row = mysqli_fetch_array($result);
+                            echo $row['username'];
+                            ?></h3>
+                            
                             <div class="text-center">
                             <img src="<?php echo $gravatar; ?>" alt="avatar">
                             </div>
@@ -35,18 +43,12 @@
                                     value="Change Username"><br>
                                 <?php
                                 if (isset($_POST['username_change'])) {
-                                    echo '<label for="username_new" class="text-info" >Enter new Username:</label><br>';
-                                    echo '<input type="text" name="username_new" id="username_new" class="form-control"  value="" ><br>';
-                                    echo '<input type="submit" name="use_new" class="btn btn-info btn-md" value="submit"><br>';
+                                   change_username();
                                 }
                                 if (isset($_POST['use_new'])) {
-                                    $username_new = $_POST['username_new'];
-                                    $email = $_SESSION['email'];
-                                    $change_usr = mysqli_query(
-                                        $db,
-                                        "UPDATE users SET username = '$username_new' WHERE email = '$email'"
-                                    );
+                                    username_change($db);
                                 }
+                                
                                 ?>
 
 
@@ -60,33 +62,11 @@
                                     value="Change Password"><br>
                                     <?php
                                     if (isset($_POST['password_change'])) {
-     echo '<label for="password_old" class="text-info" >Enter Old Password:</label><br>';
-     echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
-     echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
-     echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
-     echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
-     echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
-     echo '<input type="submit" name="submit_pass" id="submit_pass" class="btn btn-info btn-md"  value="Submit" ><br>';
+                                        change_pass();
                                     }
 
                                     if (isset($_POST['submit_pass'])) {
-  $email = $_SESSION['email'];
-  $pass_old = $_POST['password_old'];
-  $hash = md5($pass_old);
-  $pass_new1 = $_POST['pasword_new']; 
-  $pass_new2 = $_POST['pasword_confirm']; 
-  $pass_new = md5($pass_new1);
-  $result = mysqli_query($db, "SELECT password FROM users WHERE email = '$email'");
-  $pass_check = mysqli_fetch_array($result);
-  $check_pass = $pass_check['password'];
-
-                                                             
-  if (($hash == $check_pass) && ($pass_new1 == $pass_new2)){
-      
-      mysqli_query($db, "UPDATE users SET password='$pass_new' WHERE email='$email'");
-  } else {
-      echo 'Wrong password (old or new)';
-  }
+  pass_change($db);
   }  
  
                                     ?>

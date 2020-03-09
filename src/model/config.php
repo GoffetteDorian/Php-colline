@@ -30,12 +30,14 @@ function logout()
     session_destroy();
 
     // Redirect to login page
-    echo '<meta http-equiv="refresh" content="1;URL=login.php">';
+    // echo '<meta http-equiv="refresh" content="1;URL=login.php">';
+    header('location : login.php');
     
 }
 
 
 function register($db){
+    $errors = array();
     // receive all input values from the form
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -90,6 +92,7 @@ function register($db){
 
 
 function login($db) {
+    $errors = array();
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
@@ -131,7 +134,47 @@ function login($db) {
     $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
 
 
-  
 
+function change_username(){
+ echo '<label for="username_new" class="text-info" >Enter new Username:</label><br>';
+ echo '<input type="text" name="username_new" id="username_new" class="form-control"  value="" ><br>';
+ echo '<input type="submit" name="use_new" class="btn btn-info btn-md" value="submit"><br>';
+}
+
+function username_change($db){
+    $username_new = $_POST['username_new'];
+$email = $_SESSION['email'];
+$change_usr = mysqli_query($db, "UPDATE users SET username = '$username_new' WHERE email = '$email'");
+}
+
+function change_pass(){
+    echo '<label for="password_old" class="text-info" >Enter Old Password:</label><br>';
+     echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
+     echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
+     echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
+     echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
+     echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
+     echo '<input type="submit" name="submit_pass" id="submit_pass" class="btn btn-info btn-md"  value="Submit" ><br>';
+}
+function pass_change($db){
+    $email = $_SESSION['email'];
+  $pass_old = $_POST['password_old'];
+  $hash = md5($pass_old);
+  $pass_new1 = $_POST['pasword_new']; 
+  $pass_new2 = $_POST['pasword_confirm']; 
+  $pass_new = md5($pass_new1);
+  $result = mysqli_query($db, "SELECT password FROM users WHERE email = '$email'");
+  $pass_check = mysqli_fetch_array($result);
+  $check_pass = $pass_check['password'];
+
+                                                             
+  if (($hash == $check_pass) && ($pass_new1 == $pass_new2)){
+      
+      mysqli_query($db, "UPDATE users SET password='$pass_new' WHERE email='$email'");
+  } else {
+      echo 'Wrong password (old or new)';
+  }
+
+}
 
 ?>

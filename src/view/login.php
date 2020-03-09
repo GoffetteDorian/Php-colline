@@ -9,11 +9,12 @@
 <head>
   <title>Login</title>
  
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <link rel="stylesheet" type="text/css" href="../public/css/login.css">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <link rel="stylesheet" type="text/css" href="../public/css/login.css"> -->
 
 </head>
 <body>
+<?php var_dump(md5('testazerty')); ?>
     <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
