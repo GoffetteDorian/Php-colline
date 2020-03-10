@@ -4,7 +4,7 @@
   $pdo = db_connect(); //Connect to the db
 
   require_once("./model/model.php");
-  $_SESSION["user"] = getUser($pdo, "test");
+  //$_SESSION["user"] = getUser($pdo, "Dorian");
 
   $titre = "index"; 
   require("./view/head.php");
@@ -14,12 +14,16 @@
   require("./view/navbar.php");
 
   
-
-  if(!isset($_GET["topic"])){
-    require("./view/boards.php");
+  if(isset($_SESSION["email"])){
+    if(!isset($_GET["topic"])){
+      require("./view/boards.php");
+    }
+    else{
+      require("./view/topics.php");
+    }
   }
   else{
-    require("./view/topics.php");
+    require("./view/login.php");
   }
   
   

@@ -1,3 +1,4 @@
+<?php include ('../model/config.php'); ?> 
 <?php $topic = getCurrentTopic($pdo, $_GET["topic"]); ?>
 
 <div class="container">
@@ -28,7 +29,7 @@
         <div class="col-sm-2">
           <div class="card">
             <div class="card-body">
-              <img class="card-img-top" src="./public/img/80x80.png" alt="placeholder img">
+              <img class="card-img-top" src="<?php echo $gravatar; ?>" alt="placeholder img">
               <div class="card-title text-center">
                 <h4><?php echo $message["username"]; ?></h4>
               </div>
@@ -57,7 +58,4 @@
       </form>  
     </div>
   </div>
-
-
-
 </div>

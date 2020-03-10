@@ -1,7 +1,20 @@
 <!-- REQUIRE DESIGNING -->
 <div class="container">
 
+
+  <pre>
+    <?php print_r($_SESSION); ?>
+  </pre>
 <?php 
+
+
+
+
+
+
+
+
+
   $boards = getBoards($pdo);
   if(!isset($_GET["board"])){ ?>
 
