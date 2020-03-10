@@ -35,7 +35,14 @@ logout();
                             ?></h3>
                             
                             <div class="text-center">
-                            <img src="<?php echo $gravatar; ?>" alt="avatar">
+                            <?php 
+                             $email = $_SESSION['email'];
+    $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
+    $row = mysqli_fetch_assoc($result);
+    var_dump($result);
+    var_dump($row['avatar']);
+                            echo '<img src="$row["avatar"]" alt="avatar"/>';
+                             ?>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="text-info">Email</label><br>

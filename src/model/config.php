@@ -75,6 +75,8 @@ function register($db){
   VALUES('$username', '$email', '$password')";
   mysqli_query($db, $query);
   $_SESSION['email'] = $email;
+  $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
+  mysqli_query($db, "UPDATE users SET avatar='$gravatar' WHERE email='$email'");
   $_SESSION['success'] = 'You are now logged in';
   header('location: ./index.php');
 }
@@ -121,7 +123,13 @@ $email = $_SESSION['email'];
 
 $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
 
-
+function recup_avatar($db){
+    $email = $_SESSION['email'];
+    $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
+    $row = mysqli_fetch_assoc($result);
+    var_dump($result);
+    var_dump($row['avatar']);
+}
 
 function change_username(){
   echo '<label for="username_new" class="text-info" >Enter new Username:</label><br>';
