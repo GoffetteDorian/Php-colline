@@ -8,8 +8,10 @@
   $parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
   parse_str($parse, $queries);
 
-  $idUser = $_SESSION["user"]["idusers"];
+  $idUser = getUserIdByEmail($pdo, $_SESSION["email"]);
   $topic = getCurrentTopic($pdo, $queries["topic"]);
+
+  echo $idUser;
 
   $sql = 'INSERT INTO messages (content, creation_date, users_idusers, topics_idtopics)
           VALUES ("' . $_POST["content"] . '", CURRENT_TIMESTAMP, ' . $idUser . ', ' . $topic["idtopics"] . ')';
@@ -19,5 +21,5 @@
   $sth->closeCursor(); 
 
   //redirect to previous url
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  goToURL($_SERVER['HTTP_REFERER']);  
 ?>

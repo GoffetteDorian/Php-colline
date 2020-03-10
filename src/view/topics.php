@@ -1,4 +1,4 @@
-<?php include ('../model/config.php'); ?> 
+<?php include ('./model/config.php'); ?> 
 <?php $topic = getCurrentTopic($pdo, $_GET["topic"]); ?>
 
 <div class="container">

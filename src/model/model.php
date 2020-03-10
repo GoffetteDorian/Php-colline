@@ -14,6 +14,16 @@ function getUser($pdo, $name){
   return $result;
 }
 
+function getUserIdByEmail($pdo, $email){
+  $sql = 'SELECT idusers FROM users WHERE email = "' . $email . '"';
+  $sth = $pdo->prepare($sql);
+  $sth->execute();
+  $result = $sth->fetch();
+  $sth->closeCursor();
+  $result = $result["idusers"];
+  return $result;
+}
+
 //Get the list of all the boards
 function getBoards($pdo){
   $sql = 'SELECT * FROM boards';
