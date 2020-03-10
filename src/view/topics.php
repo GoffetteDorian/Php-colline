@@ -29,7 +29,7 @@
         <div class="col-sm-2">
           <div class="card">
             <div class="card-body">
-              <img class="card-img-top" src="<?php echo $gravatar; ?>" alt="placeholder img">
+              <img class="card-img-top" src="<?php echo $message["avatar"]; ?>" alt="placeholder img">
               <div class="card-title text-center">
                 <h4><?php echo $message["username"]; ?></h4>
               </div>

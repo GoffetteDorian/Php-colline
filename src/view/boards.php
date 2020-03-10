@@ -1,20 +1,6 @@
 <!-- REQUIRE DESIGNING -->
 <div class="container">
-
-
-  <pre>
-    <?php print_r($_SESSION); ?>
-  </pre>
 <?php 
-
-
-
-
-
-
-
-
-
   $boards = getBoards($pdo);
   if(!isset($_GET["board"])){ ?>
 
@@ -52,7 +38,7 @@ else{
     <h3><?php echo $currentBoard["name"]; ?></h3>
     <p><?php echo $currentBoard["description"]; ?></p>   
   </div>
-
+  <?php require("./view/breadcrumb.php"); ?>
   <!-- Creation of new topic in board -->
   <div class="card">
     <div class="card-body">
