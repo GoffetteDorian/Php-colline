@@ -20,19 +20,10 @@ function delete_profile($db){
 
 function logout()
 {
-    // Initialize the session
     session_start();
-
-    // Unset all of the session variables
     $_SESSION = array();
-
-    // Destroy the session.
     session_destroy();
-
-    // Redirect to login page
-    // echo '<meta http-equiv="refresh" content="1;URL=login.php">';
-    header('location : login.php');
-    
+    header('location : login.php');   
 }
 
 
@@ -79,7 +70,7 @@ function register($db){
         }
     }
 
-        $password = md5($password_1); //encrypt the password before saving in the database
+        $password = password_hash($password_1, PASSWORD_DEFAULT); //encrypt the password before saving in the database
 
         $query = "INSERT INTO users (username, email, password) 
   			  VALUES('$username', '$email', '$password')";
@@ -103,12 +94,10 @@ function login($db) {
         array_push($errors, 'Password is required');
     }
 
-    $password = md5($password);
-        $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-        $results = mysqli_query($db, $query);
-        //    echo $_SESSION['password'];
-        // echo $SESSION['email'];
-        if (mysqli_num_rows($results) == 1) {
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $pass_check = password_verify($password, $hash);
+
+        if (password_verify($password, $hash)) {
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['success'] = 'You are now logged in';
@@ -159,16 +148,12 @@ function change_pass(){
 function pass_change($db){
     $email = $_SESSION['email'];
   $pass_old = $_POST['password_old'];
-  $hash = md5($pass_old);
+  $hash = password_hash($pass_old, PASSWORD_DEFAULT);
   $pass_new1 = $_POST['pasword_new']; 
   $pass_new2 = $_POST['pasword_confirm']; 
-  $pass_new = md5($pass_new1);
-  $result = mysqli_query($db, "SELECT password FROM users WHERE email = '$email'");
-  $pass_check = mysqli_fetch_array($result);
-  $check_pass = $pass_check['password'];
-
-                                                             
-  if (($hash == $check_pass) && ($pass_new1 == $pass_new2)){
+  $pass_new = password_hash($pass_new1, PASSWORD_DEFAULT);
+                                        
+  if (password_verify($pass_old, $hash) && ($pass_new1 == $pass_new2)){
       
       mysqli_query($db, "UPDATE users SET password='$pass_new' WHERE email='$email'");
   } else {

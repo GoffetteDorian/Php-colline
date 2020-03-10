@@ -1,4 +1,9 @@
 <?php include('../model/config.php'); ?>
+<?php 
+if (isset($_POST['logout_profile'])) {
+logout();
+} 
+?>
 <!DOCTYPE html>
 <html>
 
@@ -91,9 +96,7 @@
                             <div class='form-group'>
                                 <input type="submit" name="logout_profile" id="logout_profile" class="form-control"
                                     value="Logout"><br>
-                              <?php if (isset($_POST['logout_profile'])) {
-                                  logout();
-                              } ?>
+                              
                             </div>
                             <div class='form-group'>
                                 <input type="submit" name="delete_profile" id="delete_profile" class="form-control text-danger"

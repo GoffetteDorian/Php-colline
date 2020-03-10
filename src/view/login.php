@@ -1,9 +1,9 @@
 <?php include('../model/config.php'); ?>
 <?php
-                                if (isset($_POST['submit'])) {
-                                    login($db);
-                                }
-                                ?>
+if (isset($_POST['submit'])) {
+    login($db);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,6 @@
 
 </head>
 <body>
-<?php var_dump(md5('testazerty')); ?>
     <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
