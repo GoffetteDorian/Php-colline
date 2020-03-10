@@ -14,6 +14,7 @@
       foreach($messages as $message){ ?>
 
       <li class="list-group-item">  
+        <!-- Message -->
         <div class="row">
           <div class="col-sm-10">
             <?php echo $message["content"]; ?>
@@ -22,8 +23,10 @@
               <?php echo $message["signature"]; ?>
             </div>
           </div>
-          <div class="card col-sm-2">
-        <div class="card col-sm-2">
+        
+        <!-- User writing the message -->
+        <div class="col-sm-2">
+          <div class="card">
             <div class="card-body">
               <img class="card-img-top" src="" alt="placeholder img">
               <div class="card-title text-center">
@@ -32,10 +35,6 @@
               <?php echo $message["creation_date"]; ?>
             </div>
           </div>
-            <div class="col-sm-10">
-              <?php echo $message["content"]; ?>
-            </div>
-          
         </div>
       </li>
     <?php } ?>

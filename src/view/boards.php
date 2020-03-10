@@ -12,23 +12,20 @@
           <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>">
             <h3><?php echo $board["name"]; ?></h3>
           </a>
-          
+          <span><?php echo $board["description"] ?></span>
         </div>
         <!-- Showing first 3 topics corresponding to most recent messages -->
-          <li class="list-group-item">
-            <div class="board">
-              <span><?php echo $board["description"] ?></span>
-
-              <?php $topics = getLatestTopics($pdo, $board["idboards"]);
-              foreach($topics as $topic){ ?>
-                <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
-                  <h4><img src="./view/images/message.svg"><?php echo $topic["title"] ?></h4>
-                </a>
-                <p><?php echo $topic["creation_date"]; ?></p>
-              <?php } ?>
-            </div>
-          </li>
-        
+        <li class="list-group-item">
+          <ul class="list-group">
+            <?php $topics = getLatestTopics($pdo, $board["idboards"]);
+            foreach($topics as $topic){ ?>
+              <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
+                <h4><?php echo $topic["title"] ?></h4>
+              </a>
+              <p><?php echo $topic["creation_date"]; ?></p>
+            <?php } ?>
+          </ul>
+        </li>
       
     <?php } ?>
   </ul>
@@ -43,7 +40,6 @@ else{
     <p><?php echo $currentBoard["description"]; ?></p>   
   </div>
 
-  <?php require("./view/breadcrumb.php") ?>
   <!-- Creation of new topic in board -->
   <div class="card">
     <div class="card-body">
