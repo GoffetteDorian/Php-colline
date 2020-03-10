@@ -4,6 +4,7 @@ if (isset($_POST['logout_profile'])) {
 logout();
 } 
 ?>
+<?php include('./Parsedown.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +15,8 @@ logout();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../public/css/profile.scss"> 
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../public/css/emoji.css" rel="stylesheet">
 </head>
 
 <body>
@@ -87,11 +90,16 @@ logout();
                                 <input type="submit" name="signature" id="signature" class="form-control"
                                     value="Change signature"><br>
                               <?php if (isset($_POST['signature'])) {
-    echo '<textarea name="signature_text" id="signature_text" rows="4" cols="50"></textarea><br>';
+    echo '<div class="lead emoji-picker-container">
+    <textarea class="form-control textarea-control" name="signature_text" rows="3" placeholder="New signature" data-emojiable="true">
+    </textarea>
+    </div><br>';
     echo '<input type="submit" name="change_sign" class="btn btn-info btn-md" value="submit"><br>';
                               }
 
                               if (isset($_POST['change_sign'])){
+                                  $Parsedown = new Parsedown();
+                                  echo $Parsedown->text($_POST['signature_text']);
                                   $email = $_SESSION['email'];
                                   $signature = mysqli_real_escape_string($db, $_POST['signature_text']);
                                   $query = "UPDATE users SET signature='$signature' WHERE email='$email'";
@@ -133,15 +141,37 @@ logout();
             </div>
         </div>
     </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
 
+ 
+
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="../public/lib/js/config.js"></script>
+  <script src="../public/lib/js/util.js"></script>
+  <script src="../public/lib/js/jquery.emojiarea.js"></script>
+  <script src="../public/lib/js/emoji-picker.js"></script>
+ <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '../public/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
+    <script>
+      // Google Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49610253-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>
