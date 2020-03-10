@@ -12,6 +12,7 @@
     <?php 
       $messages = getTopicsMessages($pdo, $topic["idtopics"]); 
       foreach($messages as $message){ ?>
+
       <li class="list-group-item">  
         <div class="row">
           <div class="col-sm-10">
@@ -22,6 +23,7 @@
             </div>
           </div>
           <div class="card col-sm-2">
+        <div class="card col-sm-2">
             <div class="card-body">
               <img class="card-img-top" src="" alt="placeholder img">
               <div class="card-title text-center">
@@ -30,13 +32,17 @@
               <?php echo $message["creation_date"]; ?>
             </div>
           </div>
+            <div class="col-sm-10">
+              <?php echo $message["content"]; ?>
+            </div>
+          
         </div>
       </li>
     <?php } ?>
   </ul>
 
   <!-- Creating a new message -->
-  <div class="card">
+<div class="list-group">
     <div class="card-body">
       <form action="create_message.php" method="POST">
         <div class="row">
@@ -44,8 +50,9 @@
             <label for="content">New message</label>
             <input type="text" class="form-control" name="content" id="content" placeholder value required>
           </div>
-          <div class="col-md-2 text-right">
-            <button class="btn btn-primary btn-sm" type="submit">Envoyer</button>
+          <div class="col-md-2 text-center d-flex align-items-end">
+
+            <button class="btn btn-primary btn-sm btn-block" type="submit">Envoyer</button>
           </div>
         </div>
       </form>  

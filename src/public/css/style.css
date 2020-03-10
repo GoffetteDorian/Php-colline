@@ -1,4 +1,105 @@
-.red {
-  color: red;
+body {
+  background: #0F2027;
+  background: linear-gradient(45deg, #203A43, #0F2027, #3f687a);
+}
+
+.navbar-default {
+  border-bottom: solid white 1px;
+}
+
+.navbar-default ul .navbar-brand {
+  opacity: 1;
+}
+
+.navbar-default ul img {
+  height: 50px;
+  margin: 16px;
+  opacity: 0.5;
+}
+
+.navbar-default ul img .logo {
+  opacity: 1;
+}
+
+.navbar-default ul img:hover {
+  opacity: 1;
+}
+
+.list-group .board a {
+  color: white;
+  margin-top: 40px;
+}
+
+.list-group .board a h3 {
+  font-size: 40px;
+  opacity: 0.8;
+}
+
+.list-group .board a h3:hover {
+  opacity: 1;
+}
+
+.list-group .list-group-item {
+  background-color: none;
+  border-radius: 8px;
+  border: none;
+  margin: 16px;
+}
+
+.list-group .list-group-item img {
+  height: 50px;
+  margin: 16px;
+  opacity: 0.3;
+}
+
+.list-group .list-group-item span {
+  color: #5e5e5f;
+  margin: 16px;
+}
+
+.list-group .list-group-item a {
+  color: #5e5e5f;
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.list-group .list-group-item .nav-link:hover {
+  -webkit-box-shadow: 10px 12px 22px -3px rgba(46, 140, 143, 0.5);
+          box-shadow: 10px 12px 22px -3px rgba(46, 140, 143, 0.5);
+}
+
+.list-group .list-group-item .nav-link:hover img {
+  opacity: 0.8;
+}
+
+.list-group .list-group-item .nav-link:hover h4 {
+  color: black;
+  opacity: 0.8;
+}
+
+.list-group .list-group-item p {
+  color: #adabab;
+  text-align: right;
+}
+
+.container h3 {
+  color: white;
+  font-size: 40px;
+}
+
+.container .list-group-item .row .message {
+  border-radius: 8px 8px 8px 0px;
+}
+
+.col-md-2 {
+  vertical-align: bottom;
+}
+
+.col-md-2 .btn {
+  background-color: #3f687a;
+}
+
+.form-control {
+  height: 32px;
 }
 /*# sourceMappingURL=style.css.map */
