@@ -1,8 +1,8 @@
 <?php 
-  include('./model/config.php');
+  include('../model/config.php');
   if (isset($_POST['submit'])) {
     login($db);
-    goToURL("./view/profile.php");
+    // goToURL("./view/profile.php");
   }
 ?>
 <div id="login">
