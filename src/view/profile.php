@@ -37,11 +37,10 @@ logout();
                             <div class="text-center">
                             <?php 
                              $email = $_SESSION['email'];
-    $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
-    $row = mysqli_fetch_assoc($result);
-    var_dump($result);
-    var_dump($row['avatar']);
-                            echo '<img src="$row["avatar"]" alt="avatar"/>';
+                            $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
+                            $row = mysqli_fetch_assoc($result);
+                            $avatar = $row['avatar'];
+                            echo '<img src="'.$avatar.'" alt="avatar"/>';
                              ?>
                             </div>
                             <div class="form-group">
