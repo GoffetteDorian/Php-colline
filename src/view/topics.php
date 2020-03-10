@@ -28,7 +28,7 @@
         <div class="col-sm-2">
           <div class="card">
             <div class="card-body">
-              <img class="card-img-top" src="" alt="placeholder img">
+              <img class="card-img-top" src="./public/img/80x80.png" alt="placeholder img">
               <div class="card-title text-center">
                 <h4><?php echo $message["username"]; ?></h4>
               </div>
@@ -51,7 +51,7 @@
           </div>
           <div class="col-md-2 text-center d-flex align-items-end">
 
-            <button class="btn btn-primary btn-sm btn-block" type="submit">Envoyer</button>
+            <button class="btn btn-primary btn-sm btn-block" type="submit">Send</button>
           </div>
         </div>
       </form>  
