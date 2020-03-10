@@ -1,5 +1,9 @@
 <?php 
 
+function goToURL ($url){
+  echo '<script language="javascript">window.location.href ="'.$url.'"</script>';
+}
+
 //Get an user by its name
 function getUser($pdo, $name){
   $sql = 'SELECT * FROM users WHERE username = "' . $name . '"';
@@ -54,25 +58,6 @@ function getCurrentTopics($pdo, $board){
   $sth->closeCursor();
   return $result;
 }
-
-// function getBoardTopics($pdo, $board, $limit = NULL){
-//   $sql = 'SELECT content, username, messages.creation_date
-//           FROM messages 
-//           JOIN topics ON topics_idtopics = topics.idtopics 
-//           JOIN users ON messages.users_idusers = users.idusers 
-//           WHERE topics.idtopics = ' . $topic . '
-//           ORDER BY messages.creation_date
-//           DESC';
-
-//   if($limit != NULL){
-//     $sql = $sql . ' LIMIT ' . $limit; 
-//   }
-
-//   $sth = $pdo->prepare($sql);
-//   $sth->execute();
-//   $result = $sth->fetchAll();
-//   return $result;
-// }
 
 function getCurrentTopic($pdo, $title){
   $sql = 'SELECT * FROM topics WHERE title = "' . $title . '"';

@@ -1,7 +1,8 @@
 <?php include('../model/config.php'); ?>
 <?php
- if (isset($_POST['register'])) {
-register($db);
+  if (isset($_POST['register'])) {
+  register($db);
+  header('location: /');  
 }
 ?>
 <!DOCTYPE html>

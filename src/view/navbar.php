@@ -4,7 +4,7 @@
       <a class="nav-link" href="/">home</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="#">profile</a>
+      <a class="nav-link" href="/view/profile.php">profile</a>
     </li>
   </ul>
 </nav>

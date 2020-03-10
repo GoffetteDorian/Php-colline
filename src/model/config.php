@@ -13,13 +13,12 @@ $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
 
 function delete_profile($db){
     // $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
-     $email = $_SESSION['email'];
-     $query = "DELETE FROM users WHERE email='$email'";
-     mysqli_query($db, $query);     
+    $email = $_SESSION['email'];
+    $query = "DELETE FROM users WHERE email='$email'";
+    mysqli_query($db, $query);     
 }
 
-function logout()
-{
+function logout(){
     session_start();
     $_SESSION = array();
     session_destroy();
@@ -28,84 +27,84 @@ function logout()
 
 
 function register($db){
-    $errors = array();
-    // receive all input values from the form
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  $errors = array();
+  // receive all input values from the form
+  $username = mysqli_real_escape_string($db, $_POST['username']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-    // form validation: ensure that the form is correctly filled ...
-    // by adding (array_push()) corresponding error unto $errors array
-    if (empty($username)) {
-        array_push($errors, 'Username is required');
-    }
-    if (empty($email)) {
-        array_push($errors, 'Email is required');
-    }
-    if (empty($password_1)) {
-        array_push($errors, 'Password is required');
-    }
-    if (empty($password_2)) {
-        array_push($errors, 'Confirm Password is required');
-    }
-    if ($password_1 != $password_2) {
-        array_push($errors, 'The two passwords do not match');
-    }
+  // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($username)) {
+      array_push($errors, 'Username is required');
+  }
+  if (empty($email)) {
+      array_push($errors, 'Email is required');
+  }
+  if (empty($password_1)) {
+      array_push($errors, 'Password is required');
+  }
+  if (empty($password_2)) {
+      array_push($errors, 'Confirm Password is required');
+  }
+  if ($password_1 != $password_2) {
+      array_push($errors, 'The two passwords do not match');
+  }
 
-    // first check the database to make sure
-    // a user does not already exist with the same username and/or email
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-    $result = mysqli_query($db, $user_check_query);
-    $user = mysqli_fetch_assoc($result);
+  // first check the database to make sure
+  // a user does not already exist with the same username and/or email
+  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
+  $result = mysqli_query($db, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
 
-    if ($user) {
-        // if user exists
-        if ($user['username'] === $username) {
-            array_push($errors, 'Username already exists');
-        }
+  if ($user) {
+      // if user exists
+      if ($user['username'] === $username) {
+          array_push($errors, 'Username already exists');
+      }
 
-        if ($user['email'] === $email) {
-            array_push($errors, 'Email already exists');
-        }
-    }
+      if ($user['email'] === $email) {
+          array_push($errors, 'Email already exists');
+      }
+  }
 
-        $password = password_hash($password_1, PASSWORD_DEFAULT); //encrypt the password before saving in the database
+  $password = password_hash($password_1, PASSWORD_DEFAULT); //encrypt the password before saving in the database
 
-        $query = "INSERT INTO users (username, email, password) 
-  			  VALUES('$username', '$email', '$password')";
-        mysqli_query($db, $query);
-        $_SESSION['email'] = $email;
-        $_SESSION['success'] = 'You are now logged in';
-        header('location: ../index.php');
-    }
+  $query = "INSERT INTO users (username, email, password) 
+  VALUES('$username', '$email', '$password')";
+  mysqli_query($db, $query);
+  $_SESSION['email'] = $email;
+  $_SESSION['success'] = 'You are now logged in';
+  header('location: ./index.php');
+}
 
 
 
 function login($db) {
-    $errors = array();
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+  $errors = array();
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
 
-    if (empty($email)) {
-        array_push($errors, 'Email is required');
-    }
-    if (empty($password)) {
-        array_push($errors, 'Password is required');
-    }
+  if (empty($email)) {
+      array_push($errors, 'Email is required');
+  }
+  if (empty($password)) {
+      array_push($errors, 'Password is required');
+  }
 
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $pass_check = password_verify($password, $hash);
+  $hash = password_hash($password, PASSWORD_DEFAULT);
+  $pass_check = password_verify($password, $hash);
 
-        if (password_verify($password, $hash)) {
-            $_SESSION['username'] = $username;
-            $_SESSION['email'] = $email;
-            $_SESSION['success'] = 'You are now logged in';
-            header('location: profile.php');
-        } else {
-            array_push($errors, 'Wrong email/password combination');
-        }
-    }
+  if (password_verify($password, $hash)) {
+      $_SESSION['username'] = $username;
+      $_SESSION['email'] = $email;
+      $_SESSION['success'] = 'You are now logged in';
+      
+  } else {
+      array_push($errors, 'Wrong email/password combination');
+  }
+}
 
 // //NEW PASSWORD
 
@@ -118,16 +117,16 @@ function login($db) {
                           
 //AVATAR
 
-    $email = $_SESSION['email'];
+$email = $_SESSION['email'];
 
-    $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
+$gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
 
 
 
 function change_username(){
- echo '<label for="username_new" class="text-info" >Enter new Username:</label><br>';
- echo '<input type="text" name="username_new" id="username_new" class="form-control"  value="" ><br>';
- echo '<input type="submit" name="use_new" class="btn btn-info btn-md" value="submit"><br>';
+  echo '<label for="username_new" class="text-info" >Enter new Username:</label><br>';
+  echo '<input type="text" name="username_new" id="username_new" class="form-control"  value="" ><br>';
+  echo '<input type="submit" name="use_new" class="btn btn-info btn-md" value="submit"><br>';
 }
 
 function username_change($db){
@@ -138,13 +137,14 @@ $change_usr = mysqli_query($db, "UPDATE users SET username = '$username_new' WHE
 
 function change_pass(){
     echo '<label for="password_old" class="text-info" >Enter Old Password:</label><br>';
-     echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
-     echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
-     echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
-     echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
-     echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
-     echo '<input type="submit" name="submit_pass" id="submit_pass" class="btn btn-info btn-md"  value="Submit" ><br>';
+    echo '<input type="password" name="password_old" id="password_old" class="form-control"  value="" ><br>';
+    echo '<label for="password_new" class="text-info" >Enter New Password:</label><br>';
+    echo '<input type="password" name="password_new" id="password_new1" class="form-control"  value="" ><br>';
+    echo '<label for="password_confirm" class="text-info" > Confirm New Password:</label><br>';
+    echo '<input type="password" name="password_confirm" id="password_new2" class="form-control"  value="" ><br>';
+    echo '<input type="submit" name="submit_pass" id="submit_pass" class="btn btn-info btn-md"  value="Submit" ><br>';
 }
+
 function pass_change($db){
     $email = $_SESSION['email'];
   $pass_old = $_POST['password_old'];
