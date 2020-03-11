@@ -1,6 +1,10 @@
+html {
+  min-height: 100%;
+}
+
 body {
   background: #0f2027;
-  background: linear-gradient(45deg, #203a43, #0f2027, #3f687a);
+  background: linear-gradient(45deg, #203a43, #162f3a, #3f687a);
 }
 
 .navbar-default {
@@ -25,18 +29,70 @@ body {
   opacity: 1;
 }
 
-.list-group .board a {
+#login h3 {
+  color: #f7f7f7;
+  margin-top: 40px;
+}
+
+#login label {
+  color: #f7f7f7;
+}
+
+#login .btn {
+  background-color: #5e5e5f;
+  border-color: #5e5e5f;
+  color: #f7f7f7;
+  margin-top: 60px;
+}
+
+#login .btn:hover {
+  background-color: #f7f7f7;
+  border-color: #f7f7f7;
+  color: #5e5e5f;
+  -webkit-box-shadow: 10px 12px 22px -3px rgba(5, 15, 15, 0.76);
+          box-shadow: 10px 12px 22px -3px rgba(5, 15, 15, 0.76);
+}
+
+#login a {
+  color: #adabab;
+  text-decoration: none;
+}
+
+#login a:hover {
+  color: #f7f7f7;
+}
+
+.breadcrumb {
+  border: solid #f7f7f7 0.1px;
+  border-radius: 25px;
+  background-color: transparent;
+}
+
+.breadcrumb .breadcrumb-item {
+  color: #f7f7f7;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #adabab;
+}
+
+.list-group a {
   color: white;
   margin-top: 40px;
 }
 
-.list-group .board a h3 {
+.list-group a h3 {
   font-size: 40px;
   opacity: 0.8;
 }
 
-.list-group .board a h3:hover {
+.list-group a h3:hover {
   opacity: 1;
+}
+
+.list-group span {
+  color: #f7f7f7;
+  margin: 16px;
 }
 
 .list-group .list-group-item {
@@ -49,15 +105,10 @@ body {
 .list-group .list-group-item img {
   height: 50px;
   margin: 16px;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
-.list-group .list-group-item span {
-  color: #5e5e5f;
-  margin: 16px;
-}
-
-.list-group .list-group-item a {
+.list-group .list-group-item .nav-link {
   color: #5e5e5f;
   background: #f7f7f7;
   border-radius: 8px;
@@ -69,7 +120,7 @@ body {
 }
 
 .list-group .list-group-item .nav-link:hover img {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .list-group .list-group-item .nav-link:hover h4 {
@@ -91,12 +142,25 @@ body {
   border-radius: 8px 8px 8px 0px;
 }
 
+.container span {
+  color: #f7f7f7;
+}
+
+.list-group .card-body h4 {
+  color: #f7f7f7;
+}
+
+.list-group .card-body label {
+  color: #adabab;
+}
+
 .col-md-2 {
   vertical-align: bottom;
 }
 
 .col-md-2 .btn {
-  background-color: #3f687a;
+  background-color: #5e5e5f;
+  border-color: #5e5e5f;
 }
 
 .form-control {

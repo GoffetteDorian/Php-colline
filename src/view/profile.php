@@ -13,13 +13,14 @@ if (isset($_POST['logout_profile'])) {
 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="../public/css/emoji.css" rel="stylesheet">
   <link rel="stylesheet" href="../public/css/style.css" />
 </head>
 
 <body>
-  <?php require("../view/navbar.php"); ?>
+  <?php require("./navbar.php"); ?>
   <div id="profile">
 
     <div class="container">
@@ -85,9 +86,9 @@ if (isset($_POST['logout_profile'])) {
                 <input type="submit" name="signature" id="signature" class="form-control" value="Change signature"><br>
                 <?php if (isset($_POST['signature'])) {
                   echo '<div class="lead emoji-picker-container">
-                                <textarea class="form-control textarea-control" name="signature_text" rows="3" placeholder="New signature" data-emojiable="true">
-                                </textarea>
-                                </div><br>';
+    <textarea class="form-control textarea-control" name="signature_text" rows="3" placeholder="New signature" data-emojiable="true">
+    </textarea>
+    </div><br>';
                   echo '<input type="submit" name="change_sign" class="btn btn-info btn-md" value="submit"><br>';
                 }
 

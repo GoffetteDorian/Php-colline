@@ -4,12 +4,16 @@ $darker-color: rgb(94, 94, 95);
 
 $bg-color: rgb(226, 226, 226);
 
+$darkershadow: (10px 12px 22px -3px rgba(5, 15, 15, 0.76));
 $darkshadow: (10px 12px 22px -3px rgba(46, 140, 143, 0.5));
 $lightshadow: (10px 12px 22px -3px rgb(223, 219, 219));
 
+html{
+  min-height: 100%;
+}
 body {
   background: #0f2027;
-  background: linear-gradient(45deg, #203a43, #0f2027, rgb(63, 104, 122));
+  background: linear-gradient(45deg, #203a43, #162f3a, rgb(63, 104, 122));
 }
 
 //NAVBAR
@@ -34,10 +38,53 @@ body {
   }
 }
 
+//LOGIN
+#login{
+  h3{
+    color: $light-color;
+    margin-top: 40px;
+  }
+  label{
+    color: $light-color;
+  }
+  .btn{
+    background-color: $darker-color ;
+    border-color: $darker-color;
+    color: $light-color;
+    margin-top: 60px;
+  }
+  .btn:hover{
+    background-color: $light-color;
+    border-color: $light-color;
+    color: $darker-color;
+    box-shadow: $darkershadow;
+  }
+  a{
+    color: $first-color;
+    text-decoration: none;
+  }
+  a:hover{
+    color: $light-color;
+  }
+}
+
+//BREADCRUMB
+.breadcrumb{
+  border: solid $light-color 0.1px;
+  border-radius: 25px;
+  background-color: transparent;
+  .breadcrumb-item{
+    color: $light-color;
+    a{
+      color: $first-color;
+    }
+  }
+}
+
 //BOARDS
 
 .list-group {
-  .board {
+
     a {
       color: white;
       margin-top: 40px;
@@ -49,6 +96,10 @@ body {
         opacity: 1;
       }
     }
+    span {
+      color: $light-color;
+      margin: 16px;
+
   }
 
   .list-group-item {
@@ -59,14 +110,9 @@ body {
     img {
       height: 50px;
       margin: 16px;
-      opacity: 0.3;
+      opacity: 0.5;
     }
-
-    span {
-      color: $darker-color;
-      margin: 16px;
-    }
-    a {
+    .nav-link {
       color: $darker-color;
       background: $light-color;
       border-radius: 8px;
@@ -74,7 +120,7 @@ body {
     .nav-link:hover {
       box-shadow: $darkshadow;
       img {
-        opacity: 0.8;
+        opacity: 1;
       }
       h4 {
         color: black;
@@ -102,13 +148,29 @@ body {
       }
     }
   }
+  span{
+    color:$light-color;
+  }
+}
+
+//NEW TOPIC
+.list-group{
+  .card-body{
+    h4{
+      color: $light-color;
+    }
+    label{
+      color: $first-color;
+    }
+  }
 }
 
 //NEW MESSAGE
 .col-md-2 {
   vertical-align: bottom;
   .btn {
-    background-color: rgb(63, 104, 122);
+    background-color: $darker-color;
+    border-color: $darker-color;
   }
 }
 
