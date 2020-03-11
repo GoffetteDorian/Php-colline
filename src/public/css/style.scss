@@ -1,110 +1,103 @@
-
 $first-color: rgb(173, 171, 171);
 $light-color: rgb(247, 247, 247);
 $darker-color: rgb(94, 94, 95);
 
 $bg-color: rgb(226, 226, 226);
 
-$darkshadow : (10px 12px 22px -3px rgba(46, 140, 143, 0.5));
+$darkshadow: (10px 12px 22px -3px rgba(46, 140, 143, 0.5));
 $lightshadow: (10px 12px 22px -3px rgb(223, 219, 219));
 
-
-body{
-  background: #0F2027;
-  background: linear-gradient(45deg,  #203A43, #0F2027,rgb(63, 104, 122));
-
+body {
+  background: #0f2027;
+  background: linear-gradient(45deg, #203a43, #0f2027, rgb(63, 104, 122));
 }
 
 //NAVBAR
 
-.navbar-default{
+.navbar-default {
   border-bottom: solid white 1px;
-  ul{
-    .navbar-brand{
+  ul {
+    .navbar-brand {
       opacity: 1;
     }
-    img{
+    img {
       height: 50px;
       margin: 16px;
       opacity: 0.5;
-      .logo{
+      .logo {
         opacity: 1;
       }
     }
-    img:hover{
+    img:hover {
       opacity: 1;
     }
   }
 }
 
-
 //BOARDS
 
-.list-group{
-  .board{
-    a{
+.list-group {
+  .board {
+    a {
       color: white;
       margin-top: 40px;
-      h3{
+      h3 {
         font-size: 40px;
         opacity: 0.8;
       }
-      h3:hover{
-        opacity:1;
+      h3:hover {
+        opacity: 1;
       }
     }
   }
 
-  .list-group-item{
-    
-      background-color: none;
-      border-radius: 8px;
-      border: none;
-      margin:16px;
-    img{
+  .list-group-item {
+    background-color: none;
+    border-radius: 8px;
+    border: none;
+    margin: 16px;
+    img {
       height: 50px;
       margin: 16px;
       opacity: 0.3;
     }
 
-    span{
+    span {
       color: $darker-color;
       margin: 16px;
     }
-    a{
+    a {
       color: $darker-color;
       background: $light-color;
       border-radius: 8px;
-        
     }
-    .nav-link:hover{
+    .nav-link:hover {
       box-shadow: $darkshadow;
-      img{
-        opacity:0.8;
+      img {
+        opacity: 0.8;
       }
-      h4{
+      h4 {
         color: black;
-        opacity:0.8;
+        opacity: 0.8;
       }
     }
-    p{
+    p {
       color: $first-color;
       text-align: right;
     }
-
   }
 }
 
 //TOPICS
 
-.container{
-  h3{
-    color:white;
+.container {
+  h3 {
+    color: white;
     font-size: 40px;
   }
-  .list-group-item{
-    .row{
-      .message{
+  .list-group-item {
+    .row {
+      .message {
         border-radius: 8px 8px 8px 0px;
       }
     }
@@ -112,16 +105,14 @@ body{
 }
 
 //NEW MESSAGE
-.col-md-2{
+.col-md-2 {
   vertical-align: bottom;
-  .btn{
+  .btn {
     background-color: rgb(63, 104, 122);
   }
 }
 
-
-.form-control{
+.form-control {
   height: 32px;
 }
 //FOOT
-
