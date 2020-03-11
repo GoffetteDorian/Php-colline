@@ -98,6 +98,3 @@ function getTopicsMessages($pdo, $topic, $limit = NULL){
   $sth->closeCursor();
   return $result;
 }
-
-
-?>

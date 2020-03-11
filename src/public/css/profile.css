@@ -10,7 +10,7 @@ body {
   max-width: 600px;
   height: auto;
   -webkit-box-shadow: 10px 5px 5px #17a2b8;
-  box-shadow: 10px 5px 5px #17a2b8;
+          box-shadow: 10px 5px 5px #17a2b8;
   background-color: #fff;
   border-radius: 6px;
 }
@@ -20,12 +20,12 @@ body {
 }
 
 #profile
-  .container
-  #profile-row
-  #profile-column
-  #profile-box
-  #profile-form
-  #profile-link {
+.container
+#profile-row
+#profile-column
+#profile-box
+#profile-form
+#profile-link {
   margin-top: -85px;
 }
 /*# sourceMappingURL=profile.css.map */

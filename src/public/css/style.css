@@ -102,4 +102,12 @@ body {
 .form-control {
   height: 32px;
 }
+
+.emoji-menu {
+  top: 0;
+}
+
+.emoji-picker-icon {
+  color: white;
+}
 /*# sourceMappingURL=style.css.map */
