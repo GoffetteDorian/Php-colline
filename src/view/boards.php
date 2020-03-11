@@ -19,7 +19,7 @@
             <?php $topics = getLatestTopics($pdo, $board["idboards"]);
             foreach($topics as $topic){ ?>
               <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
-                <h4><?php echo $topic["title"] ?></h4>
+                <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"] ?></h4>
               </a>
               <p><?php echo $topic["creation_date"]; ?></p>
             <?php } ?>
@@ -40,17 +40,17 @@ else{
   </div>
   <?php require("./view/breadcrumb.php"); ?>
   <!-- Creation of new topic in board -->
-  <div class="card">
+  <div class="list-group">
     <div class="card-body">
       <h4>New topic</h4>
       <form action="create_topic.php" method="POST">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-10">
             <label for="title">Title</label>
             <input type="text" class="form-control" name="title" id="title" placeholder value required>
           </div>
-          <div class="col-md-4 text-right text-bottom">
-            <button class="btn btn-primary btn-lg" type="submit">Create topic</button>
+          <div class="col-md-2 text-center d-flex align-items-end">
+            <button class="btn btn-primary btn-sm btn-block" type="submit">Create topic</button>
           </div>
         </div>
       </form>
@@ -60,25 +60,17 @@ else{
 
 
   <!-- Showing the list of all topics -->
-  
-  <ul class="list-group">
-    <?php 
-    $topics = getCurrentTopics($pdo, $_GET["board"]);
+  <li class="list-group">
+  <ul class="list-group-item">
+    <?php $topics = getCurrentTopics($pdo, $_GET["board"]);
     foreach($topics as $topic){ ?>
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-sm-6">
-            <a href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
-              <h3><?php echo $topic["title"]; ?></h3>
+            <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
+              <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
             </a>
-          </div>
-          <div class="col-sm-6">
             <p><?php echo $topic["creation_date"]; ?></p>
-          </div>
-        </div>
-      </li>
     <?php } ?>
   </ul>
+  </li>
   
 <?php }?>
 </div>

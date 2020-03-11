@@ -1,7 +1,4 @@
 <nav class="navbar navbar-default">
-  <ul class = "navbar-nav mr-auto list-group-horizontal sticky-top">
-    <img src = "/public/img/bubble.svg" class="navbar-brand">
-  </ul>
   <ul class="navbar-nav ml-auto list-group-horizontal sticky-top">
 
     <li class="nav-item">

@@ -70,6 +70,8 @@ body {
 
 //BREADCRUMB
 .breadcrumb{
+  border: solid $light-color 0.1px;
+  border-radius: 25px;
   background-color: transparent;
   .breadcrumb-item{
     color: $light-color;
@@ -82,7 +84,7 @@ body {
 //BOARDS
 
 .list-group {
-  .board {
+
     a {
       color: white;
       margin-top: 40px;
@@ -97,7 +99,7 @@ body {
     span {
       color: $light-color;
       margin: 16px;
-    }
+
   }
 
   .list-group-item {
@@ -108,11 +110,9 @@ body {
     img {
       height: 50px;
       margin: 16px;
-      opacity: 0.3;
+      opacity: 0.5;
     }
-
-    
-    a {
+    .nav-link {
       color: $darker-color;
       background: $light-color;
       border-radius: 8px;
@@ -120,7 +120,7 @@ body {
     .nav-link:hover {
       box-shadow: $darkshadow;
       img {
-        opacity: 0.8;
+        opacity: 1;
       }
       h4 {
         color: black;
@@ -153,11 +153,24 @@ body {
   }
 }
 
+//NEW TOPIC
+.list-group{
+  .card-body{
+    h4{
+      color: $light-color;
+    }
+    label{
+      color: $first-color;
+    }
+  }
+}
+
 //NEW MESSAGE
 .col-md-2 {
   vertical-align: bottom;
   .btn {
-    background-color: rgb(63, 104, 122);
+    background-color: $darker-color;
+    border-color: $darker-color;
   }
 }
 
