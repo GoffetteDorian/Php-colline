@@ -1,3 +1,7 @@
+html {
+  min-height: 100%;
+}
+
 body {
   background: #0f2027;
   background: linear-gradient(45deg, #203a43, #0f2027, #3f687a);
@@ -23,6 +27,39 @@ body {
 
 .navbar-default ul img:hover {
   opacity: 1;
+}
+
+#login h3 {
+  color: #f7f7f7;
+  margin-top: 40px;
+}
+
+#login label {
+  color: #f7f7f7;
+}
+
+#login .btn {
+  background-color: #5e5e5f;
+  border-color: #5e5e5f;
+  color: #f7f7f7;
+  margin-top: 60px;
+}
+
+#login .btn:hover {
+  background-color: #f7f7f7;
+  border-color: #f7f7f7;
+  color: #5e5e5f;
+  -webkit-box-shadow: 10px 12px 22px -3px rgba(5, 15, 15, 0.76);
+          box-shadow: 10px 12px 22px -3px rgba(5, 15, 15, 0.76);
+}
+
+#login a {
+  color: #adabab;
+  text-decoration: none;
+}
+
+#login a:hover {
+  color: #f7f7f7;
 }
 
 .list-group .board a {
