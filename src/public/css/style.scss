@@ -13,7 +13,7 @@ html{
 }
 body {
   background: #0f2027;
-  background: linear-gradient(45deg, #203a43, #0f2027, rgb(63, 104, 122));
+  background: linear-gradient(45deg, #203a43, #162f3a, rgb(63, 104, 122));
 }
 
 //NAVBAR
@@ -69,7 +69,15 @@ body {
 }
 
 //BREADCRUMB
-
+.breadcrumb{
+  background-color: transparent;
+  .breadcrumb-item{
+    color: $light-color;
+    a{
+      color: $first-color;
+    }
+  }
+}
 
 //BOARDS
 
@@ -86,6 +94,10 @@ body {
         opacity: 1;
       }
     }
+    span {
+      color: $light-color;
+      margin: 16px;
+    }
   }
 
   .list-group-item {
@@ -99,10 +111,7 @@ body {
       opacity: 0.3;
     }
 
-    span {
-      color: $darker-color;
-      margin: 16px;
-    }
+    
     a {
       color: $darker-color;
       background: $light-color;
@@ -138,6 +147,9 @@ body {
         border-radius: 8px 8px 8px 0px;
       }
     }
+  }
+  span{
+    color:$light-color;
   }
 }
 

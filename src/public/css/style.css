@@ -4,7 +4,7 @@ html {
 
 body {
   background: #0f2027;
-  background: linear-gradient(45deg, #203a43, #0f2027, #3f687a);
+  background: linear-gradient(45deg, #203a43, #162f3a, #3f687a);
 }
 
 .navbar-default {
@@ -62,6 +62,18 @@ body {
   color: #f7f7f7;
 }
 
+.breadcrumb {
+  background-color: transparent;
+}
+
+.breadcrumb .breadcrumb-item {
+  color: #f7f7f7;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #adabab;
+}
+
 .list-group .board a {
   color: white;
   margin-top: 40px;
@@ -76,6 +88,11 @@ body {
   opacity: 1;
 }
 
+.list-group .board span {
+  color: #f7f7f7;
+  margin: 16px;
+}
+
 .list-group .list-group-item {
   background-color: none;
   border-radius: 8px;
@@ -87,11 +104,6 @@ body {
   height: 50px;
   margin: 16px;
   opacity: 0.3;
-}
-
-.list-group .list-group-item span {
-  color: #5e5e5f;
-  margin: 16px;
 }
 
 .list-group .list-group-item a {
@@ -126,6 +138,10 @@ body {
 
 .container .list-group-item .row .message {
   border-radius: 8px 8px 8px 0px;
+}
+
+.container span {
+  color: #f7f7f7;
 }
 
 .col-md-2 {

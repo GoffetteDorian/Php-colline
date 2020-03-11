@@ -36,7 +36,7 @@ else{
   
   <div class="py-5 text-center">
     <h3><?php echo $currentBoard["name"]; ?></h3>
-    <p><?php echo $currentBoard["description"]; ?></p>   
+    <span><?php echo $currentBoard["description"]; ?></span>   
   </div>
   <?php require("./view/breadcrumb.php"); ?>
   <!-- Creation of new topic in board -->
