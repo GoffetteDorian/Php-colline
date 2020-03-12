@@ -76,7 +76,7 @@ if (isset($_POST["delete"])) {
               </div>
             <?php } ?>
             <?php
-            if (!isset($_POST["edit"])) {
+            if (!isset($_POST["edit"]) && !$message["deleted"] == 1) {
               if ($currentUserId == $messageUserId) { ?>
                 <div class="col-sm-4">
                   <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
