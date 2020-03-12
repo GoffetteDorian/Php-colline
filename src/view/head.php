@@ -11,6 +11,5 @@
 
   <?php
   echo (!empty($title)) ? '<title>' . $title . '</title>' : '<title> Forum </title>';
-  echo getcwd();
   ?>
 </head>
