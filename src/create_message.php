@@ -12,8 +12,8 @@ $idUser = getUserIdByEmail($pdo, $_SESSION["email"]);
 $topic = getCurrentTopic($pdo, $queries["topic"]);
 
 
-$sql = 'INSERT INTO messages (content, creation_date, users_idusers, topics_idtopics)
-          VALUES ("' . $_POST["content"] . '", CURRENT_TIMESTAMP, ' . $idUser . ', ' . $topic["idtopics"] . ')';
+$sql = 'INSERT INTO messages (content, creation_date, users_idusers, topics_idtopics, deleted)
+          VALUES ("' . $_POST["content"] . '", CURRENT_TIMESTAMP, ' . $idUser . ', ' . $topic["idtopics"] . ', FALSE)';
 
 $sth = $pdo->prepare($sql);
 $sth->execute();

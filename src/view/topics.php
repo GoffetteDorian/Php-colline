@@ -1,8 +1,37 @@
 <?php
 include('./model/config.php');
 include('./view/Parsedown.php');
+
+$topic = getCurrentTopic($pdo, $_GET["topic"]);
+$currentUserId = getUserIdByEmail($pdo, $_SESSION["email"]);
+
+
+if (isset($_POST["edit"])) {
+  $currentMessageId = $_POST["edit"];
+}
+
+if (isset($_POST["send_edit"])) {
+  $update = [
+    "idMessages" => $_POST["send_edit"],
+    "content" => $_POST["content"],
+  ];
+
+  updateMessage($pdo, $update);
+  goToURL($_SERVER["REQUEST_URI"]);
+}
+
+if (isset($_POST["delete"])) {
+  // echo "<pre>";
+  // print_r($_POST);
+  // echo "</pre>";
+  deleteMessage($pdo, $_POST["delete"]);
+  goToURL($_SERVER["REQUEST_URI"]);
+}
+
 ?>
-<?php $topic = getCurrentTopic($pdo, $_GET["topic"]); ?>
+
+
+<?php  ?>
 
 <div class="container">
   <div class="py-5 text-center">
@@ -15,6 +44,7 @@ include('./view/Parsedown.php');
   <ul class="list-group">
     <?php
     $messages = getTopicsMessages($pdo, $topic["idtopics"]);
+
     foreach ($messages as $message) { ?>
 
       <li class="list-group-item">
@@ -22,16 +52,43 @@ include('./view/Parsedown.php');
         <div class="row">
           <div class="col-sm-10">
             <?php
-            $parse = new Parsedown();
-            echo $parse->text($message["content"]);
+            $messageId = $message["idmessages"];
+            $messageUserId = $message["users_idusers"];
             ?>
-            <hr />
-            <div class="text-center">
-              <?php
-              echo $parse->text($message["signature"]);
-              ?>
-            </div>
+            <?php if (isset($_POST["edit"]) && $messageId == $currentMessageId) { ?>
+              <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+                <textarea name="content" class="" row="5"><?php echo $message["content"] ?></textarea>
+                <button type="submit" name="send_edit" class="btn btn-success" value="<?php echo $message["idmessages"] ?>">Send</button>
+              </form>
+            <?php } else {
+              if ($message["deleted"] == 1) {
+                echo "Message Deleted";
+              } else {
+                $parse = new Parsedown();
+                echo $parse->text($message["content"]);
+              }
+            ?>
+              <hr />
+              <div class="text-center">
+                <?php
+                echo $parse->text($message["signature"]);
+                ?>
+              </div>
+            <?php } ?>
+            <?php
+            if (!isset($_POST["edit"])) {
+              if ($currentUserId == $messageUserId) { ?>
+                <div class="col-sm-4">
+                  <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
+                    <button type="submit" name="edit" class="btn btn-outline-success" value="<?php echo $message["idmessages"] ?>">edit</button>
+                    <button type="submit" name="delete" class="btn btn-outline-danger" value="<?php echo $message["idmessages"] ?>">delete</button>
+                  </form>
+                </div>
+              <?php } ?>
+            <?php } ?>
           </div>
+
+
 
           <!-- User writing the message -->
           <div class="col-sm-2">
