@@ -76,6 +76,13 @@ body {
   color: #adabab;
 }
 
+.list-group h5 {
+  color: #adabab;
+  text-align: right;
+  font-size: 14px;
+  margin-right: 16px;
+}
+
 .list-group a {
   color: white;
   margin-top: 40px;
@@ -147,12 +154,6 @@ body {
   font-size: 32px;
 }
 
-.list-group .list-group-item h5 {
-  color: #adabab;
-  text-align: right;
-  font-size: 14px;
-}
-
 .list-group .list-group-item .circle img {
   height: 100px;
   border: 4px solid #adabab;
@@ -176,6 +177,12 @@ body {
 
 .list-group .list-group-item textarea {
   border: solid 1px #adabab;
+}
+
+.list-group .list-group-item h5 {
+  color: #adabab;
+  text-align: right;
+  font-size: 14px;
 }
 
 .container h3 {
@@ -218,6 +225,14 @@ body {
 
 .emoji-picker-icon {
   color: white;
+}
+
+.footer {
+  color: #adabab;
+}
+
+.footer a {
+  color: #adabab;
 }
 
 .notfound {
