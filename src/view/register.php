@@ -8,13 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration</title>
-  
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../public/css/register.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
 </head>
 <body>
+<?php require("./navbar.php"); ?>
 <div id="register">
         
         <div class="container">
@@ -22,26 +20,29 @@
                 <div id="register-column" class="col-md-6">
                     <div id="register-box" class="col-md-12">
                         <form id="register-form" class="form" action="register.php" method="post">
-                            <h3 class="text-center text-info">Register</h3>
+                            <h3 class="text-center">Register</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
+                                <label for="username" class="">Username</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
+                                <label for="password" class="">Password</label><br>
                                 <input type="password" name="password_1" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Confirm Password:</label><br>
+                                <label for="password" class="t">Confirm Password</label><br>
                                 <input type="password" name="password_2" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="email" class="text-info">Email:</label><br>
+                                <label for="email" class="">Email</label><br>
                                 <input type="text" name="email" id="email" class="form-control"><br>
-                                <input type="submit" name="register" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="register" class="btn btn-info btn-md btn-block" value="submit">
                             </div>
-                    
-                        </form>
+
+                        <div class="row">
+                            <a href="../index.php" class="col-md-12 text-right">Already have an account?</a>
+                        </div>                        
+                    </form>
                     </div>
                 </div>
             </div>

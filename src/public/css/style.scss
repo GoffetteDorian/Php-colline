@@ -45,7 +45,7 @@ body {
     margin-top: 40px;
   }
   label{
-    color: $light-color;
+    color: $first-color;
   }
   .btn{
     background-color: $first-color ;
@@ -65,6 +65,38 @@ body {
   }
   a:hover{
     color: $light-color;
+  }
+}
+
+//REGISTER
+#register{
+  .container {
+    h3{
+      color: $light-color;
+      margin-top: 40px;
+    }
+    label{
+      color: $first-color;
+    }
+    .btn{
+      background-color: $first-color ;
+      border-color: $first-color;
+      color: #162f3a;
+      margin-top: 60px;
+    }
+    .btn:hover{
+      background-color: $light-color;
+      border-color: $light-color;
+      color: $darker-color;
+      box-shadow: $darkershadow;
+    }
+    a{
+      color: $first-color;
+      text-decoration: none;
+    }
+    a:hover{
+      color: $light-color;
+    }
   }
 }
 
@@ -240,18 +272,11 @@ body {
   color: white;
 }
 
-//DELETE MESSAGE
-
 
 //FOOT
-.footer{
-  color: $first-color;
-  a{
-    color: $first-color;
-  }
-}
 
-//404
+
+/* //404
   //CONFIG
   $time: 250ms;
   $number: 3;
@@ -315,4 +340,4 @@ body {
         }
       }
     }
-  }
+  } */

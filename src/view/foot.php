@@ -21,13 +21,13 @@
     });
   </script>
 
-
+<footer>
   <!-- Copyright -->
-  <div class="footer footer-copyright text-center py-3">© 2020 Copyright - 
-    <a href="https://github.com/GoffetteDorian/Php-colline"> Find us on Github ! </a>
+  <div class="foot fixed-bottom">
+    <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright - 
+      <a href="https://github.com/GoffetteDorian/Php-colline" class="text-muted"> Find us on Github ! </a>
+    </div>
   </div>
 
 </footer>
-
-
   </html>
