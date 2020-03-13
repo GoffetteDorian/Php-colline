@@ -3,4 +3,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </br></br>
 
-</html>
+<footer>
+  <!-- Copyright -->
+  <div class="foot fixed-bottom">
+    <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright - 
+      <a href="https://github.com/GoffetteDorian/Php-colline" class="text-muted"> Find us on Github ! </a>
+    </div>
+  </div>
+
+</footer>
+  </html>

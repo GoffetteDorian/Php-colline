@@ -50,9 +50,8 @@ body {
     color: $light-color;
     margin-top: 40px;
   }
-
-  label {
-    color: $light-color;
+  label{
+    color: $first-color;
   }
   .btn{
     background-color: $first-color ;
@@ -75,6 +74,38 @@ body {
 
   a:hover {
     color: $light-color;
+  }
+}
+
+//REGISTER
+#register{
+  .container {
+    h3{
+      color: $light-color;
+      margin-top: 40px;
+    }
+    label{
+      color: $first-color;
+    }
+    .btn{
+      background-color: $first-color ;
+      border-color: $first-color;
+      color: #162f3a;
+      margin-top: 60px;
+    }
+    .btn:hover{
+      background-color: $light-color;
+      border-color: $light-color;
+      color: $darker-color;
+      box-shadow: $darkershadow;
+    }
+    a{
+      color: $first-color;
+      text-decoration: none;
+    }
+    a:hover{
+      color: $light-color;
+    }
   }
 }
 
@@ -114,6 +145,7 @@ body {
   span {
     color: $light-color;
     margin: 16px;
+  }
 
 
   .list-group-item {
@@ -258,79 +290,7 @@ body {
   color: white;
 }
 
-//DELETE MESSAGE
-
 
 //FOOT
-.footer{
-  color: $first-color;
-  a{
-    color: $first-color;
-  }
-}
 
-//404
-  //CONFIG
-  $time: 250ms;
-  $number: 3;
-  $ease: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  $move: 2em;
-  $color: $first-color;
-  $font: 'Roboto Condensed', sans-serif;
 
-  //STYLES
-  .notfound{
-    padding: 40vh 10vw;
-    text-align: center;
-    .error{
-      font-family: $font;
-      font-weight: 900;
-      color: $color;
-      font-size: 0;
-      transform: translate3d(0,0,0);
-      filter: blur(0);
-      span{
-        font-size: 80px;
-        display: inline-block;
-        position: relative;
-        transition: transform $ease $time;
-        padding: 0 0.1em;
-
-        
-        @for $i from 0 through $number{
-          &:nth-child(#{$i}n){ transition-delay: $time*$i/$number;}
-          &:nth-child(#{$i}n):after{ transition-delay: $time*$i/$number;}
-        }
-        &:after{
-          content: '';
-          position: absolute;
-          top: 100%;
-          left: -1%;
-          width: 102%;
-          height: $move;
-          background: $color;
-          transform-origin: top center;
-          transform: scaley(0.1);
-          transition: transform $ease $time;
-        }
-      }
-      &:hover{
-        span{
-          transform: translateY(-$move/3);
-          &:after{ transform: scaleY(2);}
-        }
-      }
-      &:active{
-        span{
-          transform: translateY(0);	
-          transition: transform $ease $time/2;
-          transition-delay: 0 !important;
-          &:after{
-            transform: scaleY(0.5);
-            transition: transform $ease $time/2;
-            transition-delay: 0 !important;
-          }
-        }
-      }
-    }
-  }
