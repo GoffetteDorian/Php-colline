@@ -3,7 +3,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </br></br>
 
-<<<<<<< HEAD
 <footer>
   <!-- Copyright -->
   <div class="foot fixed-bottom">
@@ -14,6 +13,3 @@
 
 </footer>
   </html>
-=======
-</html>
->>>>>>> f5f6feed98a049204e1d937138d696b1e2977cb9
