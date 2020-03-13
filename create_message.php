@@ -1,14 +1,14 @@
 <?php
 session_start();
-require_once("config.php");
-$pdo = db_connect();
+// require_once("config.php");
+// $pdo = db_connect();
 
-require_once("./model/model.php");
+// require_once("./model/model.php");
 
-$parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
-parse_str($parse, $queries);
+// $parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
+// parse_str($parse, $queries);
 
-echo $_SESSION["email"];
+// echo $_SESSION["email"];
 // $idUser = getUserIdByEmail($pdo, $_SESSION["email"]);
 
 // $topic = getCurrentTopic($pdo, $queries["topic"]);
