@@ -60,22 +60,22 @@ else{
 
 
   <!-- Showing the list of all topics -->
-  <li class="list-group">
-  <ul class="list-group-item">
-    <?php $topics = getCurrentTopics($pdo, $_GET["board"]); ?>
-    <?php 
-      echo "<pre>";
-      print_r($topics);
-      echo "</pre>"; ?>
-    
-    <?php foreach($topics as $topic){ ?>
-            <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
-              <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
-            </a>
-            <h5><?php echo $topic["creation_date"]; ?></h5>
-    <?php } ?>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <?php $topics = getCurrentTopics($pdo, $_GET["board"]); ?>
+      <?php 
+        echo "<pre>";
+        print_r($topics);
+        echo "</pre>"; ?>
+      
+      <?php foreach($topics as $topic){ ?>
+              <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
+                <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
+              </a>
+              <h5><?php echo $topic["creation_date"]; ?></h5>
+      <?php } ?>
+    </li>
   </ul>
-  </li>
   
 <?php }?>
 </div>
