@@ -15,9 +15,11 @@ $title = $_POST["title"];
 $sql = 'INSERT INTO topics (title, creation_date, users_idusers, boards_idboards)
           VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
 
-$sth = $pdo->prepare($sql);
-$sth->execute();
-$sth->closeCursor();
+echo $sql;
+
+// $sth = $pdo->prepare($sql);
+// $sth->execute();
+// $sth->closeCursor();
 
   //redirect to previous url
   // header('Location: ' . $_SERVER['HTTP_REFERER']);
