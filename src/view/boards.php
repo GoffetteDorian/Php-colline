@@ -21,7 +21,7 @@
               <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
                 <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"] ?></h4>
               </a>
-              <p><?php echo $topic["creation_date"]; ?></p>
+              <h5><?php echo $topic["creation_date"]; ?></h5>
             <?php } ?>
           </ul>
         </li>
@@ -67,7 +67,7 @@ else{
             <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
               <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
             </a>
-            <p><?php echo $topic["creation_date"]; ?></p>
+            <h5><?php echo $topic["creation_date"]; ?></h5>
     <?php } ?>
   </ul>
   </li>

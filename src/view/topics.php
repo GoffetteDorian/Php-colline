@@ -50,55 +50,74 @@ if (isset($_POST["delete"])) {
       <li class="list-group-item">
         <!-- Message -->
         <div class="row">
-          <div class="col-sm-10">
+          <div class="col-lg-10">
+            <div class = "row">
+              <div class = "col-lg-10">
             <?php
             $messageId = $message["idmessages"];
             $messageUserId = $message["users_idusers"];
             ?>
             <?php if (isset($_POST["edit"]) && $messageId == $currentMessageId) { ?>
+              
               <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
-                <textarea name="content" class="" row="5"><?php echo $message["content"] ?></textarea>
-                <button type="submit" name="send_edit" class="btn btn-success" value="<?php echo $message["idmessages"] ?>">Send</button>
-              </form>
-            <?php } else {
-              if ($message["deleted"] == 1) {
-                echo "Message Deleted";
-              } else {
-                $parse = new Parsedown();
-                echo $parse->text($message["content"]);
-              }
-            ?>
+              <div class= "col-lg-12 d-flex justify-content-end align-self-end">
+                <textarea name="content" class="col-lg-11" row="5"><?php echo $message["content"] ?></textarea>
+                <button type="submit" name="send_edit" class="btn col-lg-1 send" value="<?php echo $message["idmessages"] ?>"><img src="../public/img/send.svg"></button>
+              </form>   
+              </div>
+                  <?php } else {
+                    if ($message["deleted"] == 1) {
+                      echo "Message Deleted";
+                    } else {
+                      $parse = new Parsedown();
+                      echo $parse->text($message["content"]);
+                    }
+                  ?>
+</div>
+                  <!--btn edit-delete-->
+
+                <?php
+                if (!isset($_POST["edit"]) && !$message["deleted"] == 1) {
+                  if ($currentUserId == $messageUserId) { ?>
+                <div class="col-lg-2 d-flex justify-content-end">
+                      <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
+                        <button type="submit" name="edit" class="btn deletedit" value="<?php echo $message["idmessages"] ?>"><img src="../public/img/edit.svg"></button>
+                        <button type="submit" name="delete" class="btn deletedit" value="<?php echo $message["idmessages"] ?>"><img src="../public/img/cross.svg"></button>
+                      </form>
+                    </div>
+                  <?php } ?>
+                <?php } ?>
+                
+                </div>
+                
+
               <hr />
-              <div class="text-center">
+            <div class="row">
+              <div class="col-lg-10 signature d-flex align-end">
                 <?php
                 echo $parse->text($message["signature"]);
                 ?>
+              
+                <?php } ?>
               </div>
-            <?php } ?>
-            <?php
-            if (!isset($_POST["edit"]) && !$message["deleted"] == 1) {
-              if ($currentUserId == $messageUserId) { ?>
-                <div class="col-sm-4">
-                  <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
-                    <button type="submit" name="edit" class="btn btn-outline-success" value="<?php echo $message["idmessages"] ?>">edit</button>
-                    <button type="submit" name="delete" class="btn btn-outline-danger" value="<?php echo $message["idmessages"] ?>">delete</button>
-                  </form>
-                </div>
-              <?php } ?>
-            <?php } ?>
-          </div>
+                
+              </div>
+            </div>
+            
 
 
 
           <!-- User writing the message -->
-          <div class="col-sm-2">
+          <div class="col-lg-2">
             <div class="card">
-              <div class="card-body">
-                <img class="" src="<?php echo $message["avatar"]; ?>" alt="placeholder img">
-                <div class="card-title text-center">
-                  <h4><?php echo $message["username"]; ?></h4>
+              <div class="card-body text-center">
+                <div class="circle">
+                <img class="rounded-circle" src="<?php echo $message["avatar"]; ?>" alt="placeholder img">
                 </div>
-                <?php echo $message["creation_date"]; ?>
+                <div class="card-title">
+                  <h2> <?php echo $message["username"]; ?> </h2>
+                </div>
+                <h5><?php echo $message["creation_date"]; ?></h5>
               </div>
             </div>
           </div>
