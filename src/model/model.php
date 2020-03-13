@@ -1,7 +1,10 @@
 <?php
 
-function goToURL($url)
+function goToURL($url, $anchor = NULL)
 {
+  if ($anchor != NULL) {
+    $url .= "#" . $anchor;
+  }
   echo '<script language="javascript">window.location.href ="' . $url . '"</script>';
 }
 
