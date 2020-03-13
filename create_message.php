@@ -1,5 +1,5 @@
 <?php
-echo "NTM";
+echo "hello";
   // session_start();
   // require_once("config.php");
   // $pdo = db_connect();
