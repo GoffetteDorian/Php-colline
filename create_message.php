@@ -11,7 +11,7 @@ parse_str($parse, $queries);
 echo $_SESSION["email"];
 // $idUser = getUserIdByEmail($pdo, $_SESSION["email"]);
 
-$topic = getCurrentTopic($pdo, $queries["topic"]);
+// $topic = getCurrentTopic($pdo, $queries["topic"]);
 
 
 $sql = 'INSERT INTO messages (content, creation_date, users_idusers, topics_idtopics, deleted)
