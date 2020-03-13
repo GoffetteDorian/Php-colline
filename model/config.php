@@ -9,7 +9,7 @@ $errors = array();
 // connect to the database
 // $db = mysqli_connect('remotemysql.com', 'qpBidspZIE', 'UR92tr5A42', 'qpBidspZIE');
 // $db = mysqli_connect('eu-cdbr-west-02.cleardb.net', 'b6ce3f355cfde8', 'fd44f147', 'heroku_4a25fe8af1897c7');
-$db = mysqli_connect('mysql', 'root', 'root', 'mydb');
+$db = mysqli_connect('g4yltwdo6z0izlm6.chr7pe7iynqr.eu-west-1.rds.amazonaws.com', 'fa6nqso0nfvipgp1', 'cz8wfcdeh1cs95l9', 'kxda9r88l71g6qmh');
 
 function delete_profile($db){
     // $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
@@ -169,5 +169,3 @@ function pass_change($db){
   }
 
 }
-
-?>
