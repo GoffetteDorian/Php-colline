@@ -227,6 +227,14 @@ body {
   color: white;
 }
 
+.footer {
+  color: #adabab;
+}
+
+.footer a {
+  color: #adabab;
+}
+
 .notfound {
   padding: 40vh 10vw;
   text-align: center;

@@ -8,30 +8,36 @@ $darkershadow: (10px 12px 22px -3px rgba(5, 15, 15, 0.76));
 $darkshadow: (10px 12px 22px -3px rgba(46, 140, 143, 0.5));
 $lightshadow: (10px 12px 22px -3px rgb(223, 219, 219));
 
-html{
+html {
   min-height: 100%;
 }
+
 body {
   background: #0f2027;
   background: linear-gradient(45deg, #203a43, #162f3a, rgb(63, 104, 122));
+  
 }
 
 //NAVBAR
 
 .navbar-default {
   border-bottom: solid white 1px;
+
   ul {
     .navbar-brand {
       opacity: 1;
     }
+
     img {
       height: 50px;
       margin: 16px;
       opacity: 0.5;
+
       .logo {
         opacity: 1;
       }
     }
+
     img:hover {
       opacity: 1;
     }
@@ -39,12 +45,13 @@ body {
 }
 
 //LOGIN
-#login{
-  h3{
+#login {
+  h3 {
     color: $light-color;
     margin-top: 40px;
   }
-  label{
+
+  label {
     color: $light-color;
   }
   .btn{
@@ -53,29 +60,34 @@ body {
     color: #162f3a;
     margin-top: 60px;
   }
-  .btn:hover{
+
+  .btn:hover {
     background-color: $light-color;
     border-color: $light-color;
     color: $darker-color;
     box-shadow: $darkershadow;
   }
-  a{
+
+  a {
     color: $first-color;
     text-decoration: none;
   }
-  a:hover{
+
+  a:hover {
     color: $light-color;
   }
 }
 
 //BREADCRUMB
-.breadcrumb{
+.breadcrumb {
   border: solid $light-color 0.1px;
   border-radius: 25px;
   background-color: transparent;
-  .breadcrumb-item{
+
+  .breadcrumb-item {
     color: $light-color;
-    a{
+
+    a {
       color: $first-color;
     }
   }
@@ -84,27 +96,24 @@ body {
 //BOARDS & TOPIC/MESSAGES
 
 .list-group {
-  h5 {
-    color: $first-color;
-    text-align: right;
-    font-size: 14px;
-    margin-right: 16px;
+
+  a {
+    color: white;
+    margin-top: 40px;
+
+    h3 {
+      font-size: 40px;
+      opacity: 0.8;
+    }
+
+    h3:hover {
+      opacity: 1;
+    }
   }
-    a {
-      color: white;
-      margin-top: 40px;
-      h3 {
-        font-size: 40px;
-        opacity: 0.8;
-      }
-      h3:hover {
-        opacity: 1;
-      }
-    }
-    span {
-      color: $light-color;
-      margin: 16px;
-    }
+
+  span {
+    color: $light-color;
+    margin: 16px;
 
 
   .list-group-item {
@@ -112,21 +121,26 @@ body {
     border-radius: 8px;
     border: none;
     margin: 16px;
+
     img {
       height: 50px;
       margin: 16px;
       opacity: 0.5;
     }
+
     .nav-link {
       color: $darker-color;
       background: $light-color;
       border-radius: 8px;
     }
+
     .nav-link:hover {
       box-shadow: $darkshadow;
+
       img {
         opacity: 1;
       }
+
       h4 {
         color: black;
         opacity: 0.8;
@@ -195,6 +209,7 @@ body {
     color: white;
     font-size: 40px;
   }
+
   .list-group-item {
     .row {
       .message {
@@ -202,18 +217,20 @@ body {
       }
     }
   }
-  span{
-    color:$light-color;
+
+  span {
+    color: $light-color;
   }
 }
 
 //NEW TOPIC
-.list-group{
-  .card-body{
-    h4{
+.list-group {
+  .card-body {
+    h4 {
       color: $light-color;
     }
-    label{
+
+    label {
       color: $first-color;
     }
   }
@@ -222,6 +239,7 @@ body {
 //NEW MESSAGE
 .col-md-2 {
   vertical-align: bottom;
+
   .btn {
     background-color: $darker-color;
     border-color: $darker-color;
@@ -244,6 +262,12 @@ body {
 
 
 //FOOT
+.footer{
+  color: $first-color;
+  a{
+    color: $first-color;
+  }
+}
 
 //404
   //CONFIG

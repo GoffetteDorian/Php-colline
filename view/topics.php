@@ -48,7 +48,7 @@ if (isset($_POST["delete"])) {
 
     foreach ($messages as $message) { ?>
 
-      <li class="list-group-item">
+      <li class="list-group-item">  
         <!-- Message -->
         <div class="row">
           <div class="col-lg-10">
@@ -128,23 +128,20 @@ if (isset($_POST["delete"])) {
   </ul>
 
   <!-- Creating a new message -->
-  <div class="list-group">
+<div class="list-group">
     <div class="card-body">
       <form action="create_message.php" method="POST">
         <div class="row">
           <div class="col-md-10">
-
-            <!-- <input type="text" class="form-control" name="content" id="content" placeholder value required data-emojiable="true"> -->
             <label for="content">New message</label>
-            <textarea type="text" class="form-control textarea-control" name="content" id="content" rows="5" placeholder="Enter your message" data-emojiable="true" value required></textarea>
-
+            <input type="text" class="form-control" name="content" id="content" placeholder value required>
           </div>
           <div class="col-md-2 text-center d-flex align-items-end">
+
             <button class="btn btn-primary btn-sm btn-block" type="submit">Send</button>
           </div>
-
         </div>
-      </form>
+      </form>  
     </div>
   </div>
 </div>
