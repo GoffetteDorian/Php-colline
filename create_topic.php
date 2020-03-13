@@ -17,6 +17,10 @@ $sql = 'INSERT INTO topics (title, creation_date, users_idusers, boards_idboards
 
 echo $sql;
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
 // $sth = $pdo->prepare($sql);
 // $sth->execute();
 // $sth->closeCursor();
