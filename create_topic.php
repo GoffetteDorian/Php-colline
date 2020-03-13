@@ -1,6 +1,6 @@
 <?php
 session_start();
-// require_once("config.php");
+require_once("config.php");
 // $pdo = db_connect();
 
 // require_once("./model/model.php");
