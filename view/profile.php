@@ -117,7 +117,7 @@ if (isset($_POST['logout_profile'])) {
                                     ?>
                                     <?php
                                     echo '<div class="lead emoji-picker-container">
-                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true disabled">' . $row["signature"] . '</textarea>
+                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled>' . $row["signature"] . '</textarea>
 
                                     </div><br>';
                                     echo '<input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>';
