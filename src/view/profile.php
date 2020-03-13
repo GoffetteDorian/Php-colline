@@ -60,7 +60,6 @@ if (isset($_POST['logout_profile'])) {
                                         $result = mysqli_query($db, "SELECT username FROM users WHERE email='$email'");
                                         $row = mysqli_fetch_assoc($result);
                                         $username = $row['username'];
-                                        var_dump($username);
                                         ?>
                                         <input type="text" name="username_new" id="use_new" class="form-control col-11" value="<?php echo $username; ?>" disabled="disabled">
                                         <button type="submit" name="use_change" id="username_change" class="form-control" value="">
@@ -80,15 +79,15 @@ if (isset($_POST['logout_profile'])) {
                                         echo '</script>';
                                         $count++;
                                     }
-                                        if (isset($_POST['user_change'])) {
+                                    if (isset($_POST['user_change'])) {
                                         username_change($db);
                                         $count++;
-                                        
+
                                         echo $count;
-                                        if ($count == 1){
-                                        echo '<script language="javascript">window.location.href ="./profile.php"</script>';
+                                        if ($count == 1) {
+                                            echo '<script language="javascript">window.location.href ="./profile.php"</script>';
                                         }
-                                        }
+                                    }
                                     ?>
                                 </div>
 
@@ -97,11 +96,11 @@ if (isset($_POST['logout_profile'])) {
 
                                 <div class="form-group">
 
-                                    
+
                                     <?php
-                                    
+
                                     change_pass();
-                                    
+
                                     if (isset($_POST['submit_pass'])) {
                                         pass_change($db);
                                     }
@@ -109,21 +108,20 @@ if (isset($_POST['logout_profile'])) {
                                     ?>
                                 </div>
                                 <div class='form-group'>
+                                    <label for="signature" class="text-info">Signature</label><br>
                                     <?php
                                     $email = $_SESSION['email'];
                                     $query2 = "SELECT signature FROM users WHERE email='$email'";
                                     $modify = mysqli_query($db, $query2);
                                     $row = mysqli_fetch_assoc($modify);
-                                    echo '<te type="text" name="signact" id="signact" class="form-control" value="' . $row['signature'] . '" disabled="disabled"><br>'
                                     ?>
-                                    <input type="submit" name="signature" id="signature" class="form-control" value="Modify signature"><br>
-                                    <?php if (isset($_POST['signature'])) {
-                                        echo '<div class="lead emoji-picker-container">
-                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true">' . $row["signature"] . '</textarea>
+                                    <?php
+                                    echo '<div class="lead emoji-picker-container">
+                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true disabled">' . $row["signature"] . '</textarea>
 
                                     </div><br>';
-                                        echo '<input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>';
-                                    }
+                                    echo '<input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>';
+
 
                                     if (isset($_POST['modif_sign'])) {
                                         $email = $_SESSION['email'];
@@ -151,13 +149,7 @@ if (isset($_POST['logout_profile'])) {
                                     if (isset($_POST['delete_confirm'])) {
 
                                         delete_profile($db);
-                                        // logout();
-                                        echo 'deleted';
-                                        // $email = $_SESSION['email'];
-                                        // $query = "DELETE FROM users WHERE email='$email'";
-                                        // $sql = mysqli_query($db, $query);
-                                        // logout();
-                                        // echo 'deleted';
+                                        logout();
                                     }
                                     ?>
                                 </div>

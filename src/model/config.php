@@ -4,7 +4,7 @@ session_start();
 // initializing variables
 $username = '';
 $email = '';
-$errors = array();
+
 
 // connect to the database
 // $db = mysqli_connect('remotemysql.com', 'qpBidspZIE', 'UR92tr5A42', 'qpBidspZIE');
@@ -32,7 +32,7 @@ function logout()
 
 function register($db)
 {
-    $errors = array();
+    
     // receive all input values from the form
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -40,21 +40,20 @@ function register($db)
     $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
     // form validation: ensure that the form is correctly filled ...
-    // by adding (array_push()) corresponding error unto $errors array
     if (empty($username)) {
-        array_push($errors, 'Username is required');
+        echo '<div class="text-white">Username is required</div>';
     }
     if (empty($email)) {
-        array_push($errors, 'Email is required');
+        echo '<div class="text-white">Email is required</div>';
     }
     if (empty($password_1)) {
-        array_push($errors, 'Password is required');
+        echo '<div class="text-white">Password is required</div>';
     }
     if (empty($password_2)) {
-        array_push($errors, 'Confirm Password is required');
+        echo '<div class="text-white">Confirm password is required</div>';
     }
     if ($password_1 != $password_2) {
-        array_push($errors, 'The two passwords do not match');
+        echo '<div class="text-white">The two password do not match</div>';
     }
 
     // first check the database to make sure
@@ -66,11 +65,11 @@ function register($db)
     if ($user) {
         // if user exists
         if ($user['username'] === $username) {
-            array_push($errors, 'Username already exists');
+            echo '<div class="text-white">Username already exists</div>';
         }
 
         if ($user['email'] === $email) {
-            array_push($errors, 'Email already exists');
+            echo '<div class="text-white">Email already exists</div>';
         }
     }
 
@@ -90,7 +89,7 @@ VALUES('$username', '$email', '$password')";
 
 function login($db)
 {
-    $errors = array();
+    
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
