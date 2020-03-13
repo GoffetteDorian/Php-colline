@@ -123,6 +123,7 @@ if (isset($_POST["delete"])) {
           </div>
         </div>
       </li>
+      <h5><?php echo $message["creation_date"]; ?></h5>
     <?php } ?>
   </ul>
 

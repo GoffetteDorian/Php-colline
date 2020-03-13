@@ -9,6 +9,8 @@
   <link href="public/css/emoji.css" rel="stylesheet" />
   <link rel="stylesheet" href="./public/css/style.css">
 
+  <link rel="shortcut icon" type="image/png" href="../public/img/logo.png"/>
+
   <?php
   echo (!empty($title)) ? '<title>' . $title . '</title>' : '<title> Forum </title>';
   ?>
