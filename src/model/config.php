@@ -9,10 +9,15 @@ $email = '';
 // connect to the database
 // $db = mysqli_connect('remotemysql.com', 'qpBidspZIE', 'UR92tr5A42', 'qpBidspZIE');
 // $db = mysqli_connect('eu-cdbr-west-02.cleardb.net', 'b6ce3f355cfde8', 'fd44f147', 'heroku_4a25fe8af1897c7');
-$host = "g4yltwdo6z0izlm6.chr7pe7iynqr.eu-west-1.rds.amazonaws.com";
-$dbname = "kxda9r88l71g6qmh";
-$user = "fa6nqso0nfvipgp1";
-$pass = "cz8wfcdeh1cs95l9";
+// $host = "g4yltwdo6z0izlm6.chr7pe7iynqr.eu-west-1.rds.amazonaws.com";
+// $dbname = "kxda9r88l71g6qmh";
+// $user = "fa6nqso0nfvipgp1";
+// $pass = "cz8wfcdeh1cs95l9";
+
+$host = "mysql";
+$dbname = "mydb";
+$user = "root";
+$pass = "root";
 $db = mysqli_connect($host, $user, $pass, $dbname);
 
 function delete_profile($db)

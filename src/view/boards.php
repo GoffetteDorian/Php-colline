@@ -1,9 +1,13 @@
-<!-- REQUIRE DESIGNING -->
+<?php 
+  if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
+    echo "You are on very secret";
+  }
+?>
+
 <div class="container">
 <?php 
   $boards = getBoards($pdo);
   if(!isset($_GET["board"])){ ?>
-
   <!-- Showing list of all boards if no board is already selected (on index) -->
   <ul class="list-group">
     <?php foreach($boards as $board){ ?>
@@ -25,7 +29,6 @@
             <?php } ?>
           </ul>
         </li>
-      
     <?php } ?>
   </ul>
 <?php } 
