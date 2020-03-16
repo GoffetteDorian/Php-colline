@@ -1,9 +1,10 @@
 <?php 
-  $credit_validation = false;
+  $code = "s3cr3t";
+  $code_validation = false;
   if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
-    if(isset($_GET["code"]) && $_GET["code"] == "s3cr3t"){
+    if(isset($_GET["code"]) && $_GET["code"] == $code){
       echo "You can enter it <br />";
-      $credit_validation = true;
+      $code_validation = true;
     }
   }
 
@@ -26,7 +27,13 @@
         <li class="list-group-item">
           <ul class="list-group">
             <?php $topics = getLatestTopics($pdo, $board["idboards"]); ?>
+            <?php 
+                echo "<pre>";
+                print_r($topics);
+                echo "</pre>";
+              ?>
             <?php foreach($topics as $topic){ ?>
+              
               <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
                 <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"] ?></h4>
               </a>
@@ -40,7 +47,7 @@
 else{ 
   
 
-  if($credit_validation){
+  if($code_validation){
   $currentBoard = getBoardByName($pdo, $_GET["board"]);
   //echo "<pre>"; print_r($currentBoard); echo "</pre>";
   ?>
@@ -75,10 +82,16 @@ else{
     <li class="list-group-item">
       <?php $topics = getCurrentTopics($pdo, $_GET["board"]); ?>
       <?php foreach($topics as $topic){ ?>
-              <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
-                <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
-              </a>
-              <h5><?php echo $topic["creation_date"]; ?></h5>
+      <?php 
+        $url = "index.php?board=" . $_GET["board"] . "&topic=" . $topic["title"];
+        if($code_validation){
+          $url .= "&code=" . $code;
+        }   
+      ?>
+        <a class="nav-link" href="<?php echo $url ?>">
+          <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
+        </a>
+        <h5><?php echo $topic["creation_date"]; ?></h5>
       <?php } ?>
     </li>
   </ul>
