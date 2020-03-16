@@ -15,8 +15,6 @@
   $sql = 'INSERT INTO topics (title, creation_date, users_idusers, boards_idboards)
           VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
 
-  echo $sql;
-
   $sth = $pdo->prepare($sql);
   $sth->execute();
   $sth->closeCursor();

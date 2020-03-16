@@ -115,14 +115,14 @@ if (isset($_POST['logout_profile'])) {
                                     $modify = mysqli_query($db, $query2);
                                     $row = mysqli_fetch_assoc($modify);
                                     ?>
+                                    
+                                    <div class="lead emoji-picker-container">
+                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $row["signature"]; ?></textarea>
+
+                                    </div><br>
+                                    <input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>
+
                                     <?php
-                                    echo '<div class="lead emoji-picker-container">
-                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true disabled">' . $row["signature"] . '</textarea>
-
-                                    </div><br>';
-                                    echo '<input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>';
-
-
                                     if (isset($_POST['modif_sign'])) {
                                         $email = $_SESSION['email'];
                                         $query2 = "SELECT signature FROM users WHERE email='$email'";

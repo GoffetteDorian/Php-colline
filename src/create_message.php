@@ -8,7 +8,6 @@
   $parse = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
   parse_str($parse, $queries);
 
-  echo $_SESSION["email"];
   $idUser = getUserIdByEmail($pdo, $_SESSION["email"]);
   
   $topic = getCurrentTopic($pdo, $queries["topic"]);

@@ -134,7 +134,8 @@ if (isset($_POST["delete"])) {
         <div class="row">
           <div class="col-md-10">
             <label for="content">New message</label>
-            <input type="text" class="form-control" name="content" id="content" placeholder value required>
+            <textarea type="text" class="form-control textarea-control" name="content" id="content" rows="5" placeholder="Enter your message" data-emojiable="true" value required></textarea>
+
           </div>
           <div class="col-md-2 text-center d-flex align-items-end">
 

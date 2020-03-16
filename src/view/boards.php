@@ -16,8 +16,8 @@
         <!-- Showing first 3 topics corresponding to most recent messages -->
         <li class="list-group-item">
           <ul class="list-group">
-            <?php $topics = getLatestTopics($pdo, $board["idboards"]);
-            foreach($topics as $topic){ ?>
+            <?php $topics = getLatestTopics($pdo, $board["idboards"]); ?>
+            <?php foreach($topics as $topic){ ?>
               <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
                 <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"] ?></h4>
               </a>
@@ -60,17 +60,17 @@ else{
 
 
   <!-- Showing the list of all topics -->
-  <li class="list-group">
-  <ul class="list-group-item">
-    <?php $topics = getCurrentTopics($pdo, $_GET["board"]);
-    foreach($topics as $topic){ ?>
-            <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
-              <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
-            </a>
-            <h5><?php echo $topic["creation_date"]; ?></h5>
-    <?php } ?>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <?php $topics = getCurrentTopics($pdo, $_GET["board"]); ?>
+      <?php foreach($topics as $topic){ ?>
+              <a class="nav-link" href="index.php?board=<?php echo $_GET["board"]; ?>&topic=<?php echo $topic["title"]; ?>">
+                <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"]; ?></h4>
+              </a>
+              <h5><?php echo $topic["creation_date"]; ?></h5>
+      <?php } ?>
+    </li>
   </ul>
-  </li>
   
 <?php }?>
 </div>
