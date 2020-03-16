@@ -1,12 +1,11 @@
 <?php
   function db_connect(){
 
-    // LOCAL
+    // LOCAL CONNECTIOn
     $host = "mysql";
     $dbname = "mydb";
     $user = "root";
     $pass = "root";
-
 
     // HEROKU
     // $host = "g4yltwdo6z0izlm6.chr7pe7iynqr.eu-west-1.rds.amazonaws.com";

@@ -1,7 +1,12 @@
 <?php 
+  $credit_validation = false;
   if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
-    echo "You are on very secret";
+    if(isset($_GET["code"]) && $_GET["code"] == "s3cr3t"){
+      echo "You can enter it <br />";
+      $credit_validation = true;
+    }
   }
+
 ?>
 
 <div class="container">
@@ -33,6 +38,9 @@
   </ul>
 <?php } 
 else{ 
+  
+
+  if($credit_validation){
   $currentBoard = getBoardByName($pdo, $_GET["board"]);
   //echo "<pre>"; print_r($currentBoard); echo "</pre>";
   ?>
@@ -75,5 +83,12 @@ else{
     </li>
   </ul>
   
-<?php }?>
+<?php 
+    } else { ?>
+      <div class="no-code">
+        <h1>YOU DO NOT HAVE ACCESS TO THIS PAGE</h1>
+      </div>  
+    
+    <?php }
+  } ?>
 </div>
