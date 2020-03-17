@@ -12,6 +12,19 @@
   $idBoard = getBoardByName($pdo, $queries["board"])["idboards"];
   $title = $_POST["title"];
 
+  if($queries["board"] == "Random"){
+    $sql = "SELECT COUNT(*) FROM topics WHERE boards_idboards = " . $idBoard;
+    $sth = $pdo->prepare($sql);
+    $sth->execute();
+    $count = $sth->fetch();
+    
+    if($count[0] >= 5){
+      $sql = "DELETE FROM topics WHERE boards_idboards = " . $idBoard . " ORDER BY creation_date ASC LIMIT 1";
+      $sth = $pdo->prepare($sql);
+      $sth->execute();
+    }
+  }
+
   $sql = 'INSERT INTO topics (title, creation_date, users_idusers, boards_idboards)
           VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
 
