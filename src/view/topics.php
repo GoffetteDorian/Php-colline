@@ -133,14 +133,22 @@ if (isset($_POST["delete"])) {
   </ul>
 
   <!-- Creating a new message -->
+  
 <div class="list-group">
     <div class="card-body">
       <form action="create_message.php" method="POST">
         <div class="row">
           <div class="col-md-10">
             <label for="content">New message</label>
-            <textarea type="text" class="form-control textarea-control" name="content" id="content" rows="5" placeholder="Enter your message" data-emojiable="true" value required></textarea>
-
+            <?php
+              if($messages[sizeof($messages) - 1]["users_idusers"] == $_SESSION["idusers"]){
+                ?>
+                  <textarea style="border: solid 1px red" type="text" class="form-control textarea-control" name="content" id="content" rows="5" placeholder="You were the last to type in this chat" disabled></textarea>
+                <?php
+              } else {
+            ?>
+              <textarea type="text" class="form-control textarea-control" name="content" id="content" rows="5" placeholder="Enter your message" data-emojiable="true" value required></textarea>
+            <?php } ?>
           </div>
           <div class="col-md-2 text-center d-flex align-items-end">
 
