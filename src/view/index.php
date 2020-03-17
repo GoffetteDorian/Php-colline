@@ -10,6 +10,13 @@
   require("./view/head.php");
 
  // $test = getUsers($pdo);
+  $code = "s3cr3t";
+  $code_validation = false;
+  if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
+    if(isset($_GET["code"]) && $_GET["code"] == $code){
+      $code_validation = true;
+    }
+}
 
   require("./view/navbar.php");
 

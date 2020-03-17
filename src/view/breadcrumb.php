@@ -1,3 +1,5 @@
+
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
@@ -10,7 +12,13 @@
     <?php }
       else { ?>
       <li class="breadcrumb-item">
-        <a href="index.php?board=<?php echo $_GET["board"]; ?>">
+        <?php 
+          $url = "index.php?board=" . $_GET["board"];
+          if(isset($_GET["code"]) && $_GET["code"] == $code){
+            $url .= "&code=" . $code;
+          }
+        ?>
+        <a href="<?php echo $url ?>">
           <?php echo $_GET["board"]; ?>
         </a>
       </li>

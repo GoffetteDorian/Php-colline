@@ -1,12 +1,12 @@
 <?php 
-  $code = "s3cr3t";
-  $code_validation = false;
-  if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
-    if(isset($_GET["code"]) && $_GET["code"] == $code){
-      echo "You can enter it <br />";
-      $code_validation = true;
-    }
-  }
+  // $code = "s3cr3t";
+  // $code_validation = false;
+  // if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
+  //   if(isset($_GET["code"]) && $_GET["code"] == $code){
+  //     echo "You can enter it <br />";
+  //     $code_validation = true;
+  //   }
+  // }
 
 ?>
 
@@ -28,9 +28,9 @@
           <ul class="list-group">
             <?php $topics = getLatestTopics($pdo, $board["idboards"]); ?>
             <?php 
-                echo "<pre>";
-                print_r($topics);
-                echo "</pre>";
+                // echo "<pre>";
+                // print_r($topics);
+                // echo "</pre>";
               ?>
             <?php foreach($topics as $topic){ ?>
               
@@ -47,7 +47,7 @@
 else{ 
   
 
-  if($code_validation){
+  if($code_validation || $_GET["board"] != "Very Secret"){
   $currentBoard = getBoardByName($pdo, $_GET["board"]);
   //echo "<pre>"; print_r($currentBoard); echo "</pre>";
   ?>

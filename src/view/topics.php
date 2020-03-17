@@ -29,19 +29,18 @@ if (isset($_POST["delete"])) {
   goToURL($_SERVER["REQUEST_URI"], $_POST["delete"]);
 }
 
-
 // BOARDS: SECRET - TOPICS
-$code = "s3cr3t";
-$code_validation = false;
-if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
-  if(isset($_GET["code"]) && $_GET["code"] == $code){
-    $code_validation = true;
-  }
-}
+// $code = "s3cr3t";
+// $code_validation = false;
+// if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
+//   if(isset($_GET["code"]) && $_GET["code"] == $code){
+//     $code_validation = true;
+//   }
+// }
 ?>
 
 
-<?php if($code_validation){  ?>
+<?php if($code_validation || $_GET["board"] != "Very Secret"){  ?>
 <div class="container">
   <div class="py-5 text-center">
     <h3><?php echo $topic["title"]; ?></h3>
@@ -112,8 +111,6 @@ if(isset($_GET["board"]) && $_GET["board"] == "Very Secret"){
 
           </div>
         </div>
-
-
 
 
         <!-- User writing the message -->
