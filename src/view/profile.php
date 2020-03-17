@@ -45,6 +45,11 @@ if (isset($_POST['logout_profile'])) {
                                     echo '<img src="' . $avatar . '" alt="avatar"/>';
                                     ?>
                                 </div>
+                                <form action="upload.php" method="post" enctype="multipart/form-data">
+                                    Select image to upload:
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <input type="submit" value="Upload Image" name="submit">
+                                </form>
                                 <div class="form-group">
                                     <label for="email" class="text-info">Email</label><br>
                                     <input type="text" name="email_change" id="email_change" class="form-control" disabled='disabled' value="<?php echo $_SESSION['email']; ?>"><br>
@@ -115,9 +120,9 @@ if (isset($_POST['logout_profile'])) {
                                     $modify = mysqli_query($db, $query2);
                                     $row = mysqli_fetch_assoc($modify);
                                     ?>
-                                    
+
                                     <div class="lead emoji-picker-container">
-                                    <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $row["signature"]; ?></textarea>
+                                        <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $row["signature"]; ?></textarea>
 
                                     </div><br>
                                     <input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>
