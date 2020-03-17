@@ -85,8 +85,8 @@ if (isset($_POST["delete"])) {
             <!--btn edit-delete-->
 
             <?php
-                  if (!isset($_POST["edit"]) && !$message["deleted"] == 1) {
-                    if ($currentUserId == $messageUserId) { ?>
+            if (!isset($_POST["edit"]) && !$message["deleted"] == 1) {
+              if ($currentUserId == $messageUserId && $message == $messages[sizeof($messages) - 1]) { ?>
                 <div class="col-lg-2 d-flex justify-content-end">
                   <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
                     <button type="submit" name="edit" class="btn deletedit" value="<?php echo $message["idmessages"] ?>"><img src="../public/img/edit.svg"></button>
@@ -151,7 +151,6 @@ if (isset($_POST["delete"])) {
             <?php } ?>
           </div>
           <div class="col-md-2 text-center d-flex align-items-end">
-
             <button class="btn btn-primary btn-sm btn-block" type="submit">Send</button>
           </div>
         </div>
