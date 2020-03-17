@@ -9,9 +9,8 @@ if (isset($_POST['logout_profile'])) {
 <?php include('./Parsedown.php'); ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Profile</title>
+    
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -235,8 +234,7 @@ if (isset($_POST['logout_profile'])) {
                 </a>
             </div>
         </div>
-    <?php }
-    ?>
+    <?php } ?>
 </body>
 
 </html>
