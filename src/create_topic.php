@@ -12,6 +12,7 @@
   $idBoard = getBoardByName($pdo, $queries["board"])["idboards"];
   $title = $_POST["title"];
 
+  // If the board is random we count the number of topics in it and if that count is higher than 5 we delete the older topic to add the new one
   if($queries["board"] == "Random"){
     $sql = "SELECT COUNT(*) FROM topics WHERE boards_idboards = " . $idBoard;
     $sth = $pdo->prepare($sql);
@@ -29,7 +30,7 @@
           VALUES ("' . $title . '" , CURRENT_TIMESTAMP, ' . $idUser . ', ' . $idBoard . ')';
 
   $sth = $pdo->prepare($sql);
-  $sth->execute();
+  $sth->execute(); 
   $sth->closeCursor();
 
   //redirect to previous url
