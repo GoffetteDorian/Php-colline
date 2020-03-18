@@ -10,7 +10,7 @@ if (isset($_POST['logout_profile'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <title>Profile</title>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -38,9 +38,12 @@ if (isset($_POST['logout_profile'])) {
                                 <div class="text-center">
                                     <?php
                                     $email = $_SESSION['email'];
-                                    $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
-                                    $row = mysqli_fetch_assoc($result);
-                                    $avatar = $row['avatar'];
+                                    $result = "SELECT `avatar` FROM `users` WHERE `email` = '$email'";
+                                    $sth = $db->prepare($result);
+                                    $sth->execute();
+                                    $avatar = $sth->fetchColumn();
+                                    
+                                    
                                     echo '<img src="' . $avatar . '" alt="avatar"/>';
                                     ?>
                                 </div>
@@ -56,14 +59,16 @@ if (isset($_POST['logout_profile'])) {
 
                                 </div>
                                 <div class="form-group">
+                                    <form method="post">
                                     <label for="username" class="text-info">Username</label><br>
 
                                     <div class="form-inline">
                                         <?php
                                         $email = $_SESSION['email'];
-                                        $result = mysqli_query($db, "SELECT username FROM users WHERE email='$email'");
-                                        $row = mysqli_fetch_assoc($result);
-                                        $username = $row['username'];
+                                        $result = "SELECT `username` FROM `users` WHERE `email` = '$email'";
+                                        $sth = $db->prepare($result);
+                                        $sth->execute();
+                                        $username = $sth->fetchColumn();
                                         ?>
                                         <input type="text" name="username_new" id="use_new" class="form-control col-11" value="<?php echo $username; ?>" disabled="disabled">
                                         <button type="submit" name="use_change" id="username_change" class="form-control" value="">
@@ -93,57 +98,91 @@ if (isset($_POST['logout_profile'])) {
                                         }
                                     }
                                     ?>
+                                    </form>
                                 </div>
 
 
 
 
                                 <div class="form-group">
-
+                                    <form method="post">
 
                                     <?php
 
                                     change_pass();
 
                                     if (isset($_POST['submit_pass'])) {
-                                        pass_change($db);
+                                        // pass_change($db);
+                                        $email = $_SESSION['email'];
+                                        $pass_old = $_POST['password_old'];
+                                        $pass_new1 = $_POST['pasword_new'];
+                                        $pass_new2 = $_POST['pasword_confirm'];
+                                        $pass_new = password_hash($pass_new1, PASSWORD_DEFAULT);
+
+                                        $sql = "SELECT `password` FROM `users` WHERE `email` = '$email'";
+                                        $sth = $db->prepare($sql);
+                                        $sth->execute();
+                                        $pass = $sth->fetchColumn();
+                                        $sth->closeCursor();
+                                        $sth = null;
+
+
+                                        if (password_verify($pass_old, $pass) && ($pass_new1 == $pass_new2)) {
+
+                                            $query = "UPDATE `users` SET `password` = '$pass_new' WHERE `email` = '$email'";
+                                            $stmt = $db->prepare($query);
+                                            $stmt->execute();
+                                            $stmt->closeCursor();
+                                            $stmt = null;
+                                        } else if ($pass_new1 != $pass_new2) {
+                                            echo 'Passwords must be the same';
+                                        } else if (password_verify($pass_old, $pass) == false) {
+                                            echo 'Current password is not correct';
+                                        }
                                     }
 
                                     ?>
+                                    </form>
                                 </div>
                                 <div class='form-group'>
+                                    <form method="post">
                                     <label for="signature" class="text-info">Signature</label><br>
                                     <?php
                                     $email = $_SESSION['email'];
-                                    $query2 = "SELECT signature FROM users WHERE email='$email'";
-                                    $modify = mysqli_query($db, $query2);
-                                    $row = mysqli_fetch_assoc($modify);
+                                    $query2 = "SELECT `signature` FROM `users` WHERE `email` = '$email'";
+                                    $sth = $db->prepare($query2);
+                                    $sth->execute();
+                                    $sign = $sth->fetchColumn();
+                                    var_dump($sign);
+                                    
                                     ?>
 
                                     <div class="lead emoji-picker-container">
-                                        <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $row["signature"]; ?></textarea>
+                                        <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $sign; ?></textarea>
 
                                     </div><br>
                                     <input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>
 
                                     <?php
                                     if (isset($_POST['modif_sign'])) {
-                                        $email = $_SESSION['email'];
-                                        $query2 = "SELECT signature FROM users WHERE email='$email'";
-                                        $modify = mysqli_query($db, $query2);
-                                        $row = mysqli_fetch_assoc($modify);
-                                        $signature = mysqli_real_escape_string($db, $_POST['signature_change']);
-                                        $query = "UPDATE users SET signature='$signature' WHERE email='$email'";
-                                        mysqli_query($db, $query);
+                                        
+                                        $signature = strip_tags($_REQUEST['signature_change']);
+                                        $query = "UPDATE `users` SET `signature` = '$signature' WHERE `email`= '$email'";
+                                        $sth = $db->prepare($query);
+                                        $sth->execute();
                                         echo '<meta http-equiv="refresh" content="0">';
                                     }
 
                                     ?>
+                                    </form>
                                 </div>
                                 <div class='form-group'>
+                                    <form method="post">
                                     <input type="submit" name="logout_profile" id="logout_profile" class="form-control" value="Logout"><br>
+                                    </form>
                                 </div>
                                 <div class='form-group'>
+                                    <form method="post">
                                     <input type="submit" name="delete_profile" id="delete_profile" class="form-control text-danger" value="DELETE PROFILE"><br>
                                     <?php
                                     if (isset($_POST['delete_profile'])) {
@@ -156,6 +195,7 @@ if (isset($_POST['logout_profile'])) {
                                         logout();
                                     }
                                     ?>
+                                    </form>
                                 </div>
 
                             </form>

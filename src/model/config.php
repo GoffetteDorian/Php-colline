@@ -18,24 +18,28 @@ $host = "mysql";
 $dbname = "mydb";
 $user = "root";
 $pass = "root";
-$db = mysqli_connect($host, $user, $pass, $dbname);
+$db = new PDO("mysql:host=" . $host . "; dbname=" . $dbname, $user, $pass);
 
 function delete_profile($db)
 {
     // $db = mysqli_connect('mysql', 'root', 'root', 'mydb');
     $email = $_SESSION['email'];
-    $query = "DELETE FROM users WHERE email='$email'";
-    mysqli_query($db, $query);
+    $query =$db->prepare("DELETE FROM `users` WHERE `email` = '$email'");
+    $query->bindValue(':email', $email, PDO::PARAM_STR);
+    $query->execute();
+    $query->closeCursor();
+    $query = null;
 }
 
 function logout()
 {
 
     session_start();
-    session_unset();
-    session_destroy();
-    //   session_regenerate_id(true);
-    
+    unset($_SESSION['user_session']);
+
+    if (session_destroy()) {
+        header("Location: index.php");
+    }
 }
 
 
@@ -43,10 +47,10 @@ function register($db)
 {
     
     // receive all input values from the form
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+    $username = strip_tags($_REQUEST['username']);
+    $email = strip_tags($_REQUEST['email']);
+    $password_1 = strip_tags($_REQUEST['password_1']);
+    $password_2 = strip_tags($_REQUEST['password_2']);
 
     // form validation: ensure that the form is correctly filled ...
     if (empty($username)) {
@@ -67,9 +71,12 @@ function register($db)
 
     // first check the database to make sure
     // a user does not already exist with the same username and/or email
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-    $result = mysqli_query($db, $user_check_query);
-    $user = mysqli_fetch_assoc($result);
+    $user_check_query = "SELECT * FROM `users` WHERE `username` = '$username' OR `email` = '$email' LIMIT 1";
+    $sth = $db->prepare($user_check_query);
+    $sth->execute();
+    $user = $sth->fetchAll(PDO::FETCH_OBJ);
+    $sth->closeCursor();
+    $sth = null;
 
     if ($user) {
         // if user exists
@@ -84,12 +91,15 @@ function register($db)
 
     $password = password_hash($password_1, PASSWORD_DEFAULT); //encrypt the password before saving in the database
 
-    $query = "INSERT INTO users (username, email, password) 
+    $query = "INSERT INTO `users` (username, email, password) 
 VALUES('$username', '$email', '$password')";
-    mysqli_query($db, $query);
+    $sth = $db->prepare($query);
+    $sth->execute();
     $_SESSION['email'] = $email;
     $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
-    mysqli_query($db, "UPDATE users SET avatar='$gravatar' WHERE email='$email'");
+    $stmt = "UPDATE `users` SET `avatar` = '$gravatar' WHERE `email` = '$email'";
+    $sth = $db->prepare($stmt);
+    $sth->execute();
     $_SESSION['success'] = 'You are now logged in';
     header('location: ./index.php');
 }
@@ -99,8 +109,8 @@ VALUES('$username', '$email', '$password')";
 function login($db)
 {
     
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $email = strip_tags($_REQUEST['email']);
+    $password = strip_tags($_REQUEST['password']);
 
     
     if (empty($email)) {
@@ -112,11 +122,14 @@ function login($db)
 
     // $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $result = mysqli_query($db, "SELECT * FROM users WHERE email='$email'");
-    $row = mysqli_fetch_assoc($result);
+    $result = "SELECT * FROM `users` WHERE `email` = '$email'";
+    $sth = $db->prepare($result);
+    $sth->execute();
+    $row = $sth->fetch();
     $pass = $row['password'];
     $idusers = $row['idusers'];
     $username = $row['username'];
+   
  
 
     if (password_verify($password, $pass)) {
@@ -127,6 +140,10 @@ function login($db)
         echo '<script>window.location.href="../index.php"</script>';
     } else {
         echo '<div class="text-white">Wrong email/password combination</div>';
+        var_dump($row['username']);
+        var_dump($row['idusers']);
+        var_dump($pass);
+        var_dump($row['password']);
     }
  
     }
@@ -148,14 +165,6 @@ $email = $_SESSION['email'];
 
 $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
 
-function recup_avatar($db)
-{
-    $email = $_SESSION['email'];
-    $result = mysqli_query($db, "SELECT avatar FROM users WHERE email='$email'");
-    $row = mysqli_fetch_assoc($result);
-    var_dump($result);
-    var_dump($row['avatar']);
-}
 
 function change_username()
 {
@@ -168,7 +177,11 @@ function username_change($db)
 {
     $username_new = $_POST['username_new'];
     $email = $_SESSION['email'];
-    mysqli_query($db, "UPDATE users SET username = '$username_new' WHERE email = '$email'");
+    $sql = "UPDATE `users` SET `username` = '$username_new' WHERE `email` = '$email'";
+    $sth = $db->prepare($sql);
+    $sth->execute();
+    $sth->closeCursor();
+    $sth = null;
 }
 
 function change_pass()
@@ -190,13 +203,22 @@ function pass_change($db)
     $pass_new2 = $_POST['pasword_confirm'];
     $pass_new = password_hash($pass_new1, PASSWORD_DEFAULT);
 
-    $result = mysqli_query($db, "SELECT password FROM users WHERE email='$email'");
-    $row = mysqli_fetch_assoc($result);
-    $pass = $row['password'];
+    $sql = "SELECT `password` FROM `users` WHERE `email` = '$email'";
+    $sth = $db->prepare($sql);
+    $sth->execute();
+    $pass = $sth->fetchColumn();
+    $sth->closeCursor();
+    $sth = null;
+
 
     if (password_verify($pass_old, $pass) && ($pass_new1 == $pass_new2)) {
 
-        mysqli_query($db, "UPDATE users SET password='$pass_new' WHERE email='$email'");
+        $query = "UPDATE `users` SET `password` = '$pass_new' WHERE `email` = '$email'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $stmt->closeCursor();
+        $stmt = null;
+
     } else if ($pass_new1 != $pass_new2) {
         echo 'Passwords must be the same';
     }else if(password_verify($pass_old, $pass) == false) {
