@@ -129,8 +129,8 @@ function login($db)
     $pass = $row['password'];
     $idusers = $row['idusers'];
     $username = $row['username'];
-   
- 
+
+
 
     if (password_verify($password, $pass)) {
         $_SESSION['idusers'] = $idusers;
@@ -143,7 +143,7 @@ function login($db)
         var_dump($row['username']);
         var_dump($row['idusers']);
         var_dump($pass);
-        var_dump($row['password']);
+        var_dump(password_hash($password, PASSWORD_DEFAULT));
     }
  
     }

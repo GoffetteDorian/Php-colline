@@ -1,4 +1,7 @@
-<?php include('../model/config.php'); ?>
+<?php include('../model/config.php');
+ini_set("display_errors", "1");
+error_reporting(E_ALL);
+?>
 
 <?php
 if (isset($_POST['logout_profile'])) {
@@ -9,6 +12,7 @@ if (isset($_POST['logout_profile'])) {
 <?php include('./Parsedown.php'); ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Profile</title>
 
@@ -31,27 +35,77 @@ if (isset($_POST['logout_profile'])) {
                 <div id="profile-row" class="row justify-content-center align-items-center">
                     <div id="profile-column" class="col-md-6">
                         <div id="profile-box" class="col-md-12">
-                            <form id="profile-form" class="form" action="profile.php" method="post">
+                            <form id="profile-form" class="form" action="profile.php" method="post" enctype="multipart/form-data">
                                 <h3 class="text-center text-info">
                                 </h3>
 
                                 <div class="text-center">
+
                                     <?php
                                     $email = $_SESSION['email'];
                                     $result = "SELECT `avatar` FROM `users` WHERE `email` = '$email'";
                                     $sth = $db->prepare($result);
                                     $sth->execute();
                                     $avatar = $sth->fetchColumn();
-                                    
-                                    
+
+
                                     echo '<img src="' . $avatar . '" alt="avatar"/>';
                                     ?>
+                                    <br>
+                                    <button type="submit" name="gravatar">USE GRAVATAR</button>
+                                    
+                                    <?php
+                                    if (isset($_POST['gravatar'])) {
+                                        $gravatar = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '?d=identicon';
+                                        $stmt = "UPDATE `users` SET `avatar` = '$gravatar' WHERE `email` = '$email'";
+                                        $sth = $db->prepare($stmt);
+                                        $sth->execute();
+                                        echo '<script language="javascript">window.location.href ="./profile.php"</script>';
+                                    }
+                                    
+                                    ?>
+                                    <input type="file" name="file">
+                                    <button type="submit" name="avatar">Change avatar</button>
+                                    <?php
+                                    if (isset($_POST['avatar'])) {
+                                        $file = $_FILES['file'];
+                                        
+
+                                        $fileName = $_FILES['file']['name'];
+                                        $fileSize = $_FILES['file']['size'];
+                                        $fileTmpName = $_FILES['file']['tmp_name'];
+                                        $fileError = $_FILES['file']['error'];
+                                        $fileType = $_FILES['file']['type'];
+
+                                        $fileExt = explode('.',$fileName);
+                                        $fileActualExt = strtolower(end($fileExt));
+
+                                        $allowed = array('jpg', 'jpeg', 'png');
+
+                                        if (in_array($fileActualExt, $allowed)) {
+                                            if ($fileError === 0) {
+                                                if ($fileSize < 1000000) {
+                                                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                                                    $fileDestination = '../uploads/'.$fileNameNew;
+                                                    move_uploaded_file($fileTmpName, $fileDestination);
+                                                    $sql = "UPDATE `users` SET `avatar` ='$fileDestination' WHERE `email` ='$email'";
+                                                    $sth = $db->prepare($sql);
+                                                    $sth->execute();
+                                                    echo 'File uploaded succesfully';
+                                                    echo '<script language="javascript">window.location.href ="./profile.php"</script>';
+                                                } else {
+                                                    echo 'File is too big!';
+                                                }
+                                            } else {
+                                                echo 'There was an error uploading your file!';
+                                            }
+                                        } else {
+                                            echo 'File have to be JPG/JPEG/PNG!';
+                                        }
+                                    }
+                                    ?>
+
                                 </div>
-                                <form action="upload.php" method="post" enctype="multipart/form-data">
-                                    Select image to upload:
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                    <input type="submit" value="Upload Image" name="submit">
-                                </form>
                                 <div class="form-group">
                                     <label for="email" class="text-info">Email</label><br>
                                     <input type="text" name="email_change" id="email_change" class="form-control" disabled='disabled' value="<?php echo $_SESSION['email']; ?>"><br>
@@ -59,7 +113,6 @@ if (isset($_POST['logout_profile'])) {
 
                                 </div>
                                 <div class="form-group">
-                                    <form method="post">
                                     <label for="username" class="text-info">Username</label><br>
 
                                     <div class="form-inline">
@@ -98,14 +151,14 @@ if (isset($_POST['logout_profile'])) {
                                         }
                                     }
                                     ?>
-                                    </form>
+
                                 </div>
 
 
 
 
                                 <div class="form-group">
-                                    <form method="post">
+
 
                                     <?php
 
@@ -142,10 +195,10 @@ if (isset($_POST['logout_profile'])) {
                                     }
 
                                     ?>
-                                    </form>
+
                                 </div>
                                 <div class='form-group'>
-                                    <form method="post">
+
                                     <label for="signature" class="text-info">Signature</label><br>
                                     <?php
                                     $email = $_SESSION['email'];
@@ -154,18 +207,18 @@ if (isset($_POST['logout_profile'])) {
                                     $sth->execute();
                                     $sign = $sth->fetchColumn();
                                     var_dump($sign);
-                                    
+
                                     ?>
 
                                     <div class="lead emoji-picker-container">
-                                        <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" disabled><?php echo $sign; ?></textarea>
+                                        <textarea class="form-control textarea-control" rows="3" name="signature_change" data-emojiable="true" data-emoji-input="unicode"><?php echo $sign; ?></textarea>
 
                                     </div><br>
                                     <input type="submit" name="modif_sign" class="btn btn-info btn-md" value="Modify"><br>
 
                                     <?php
                                     if (isset($_POST['modif_sign'])) {
-                                        
+
                                         $signature = strip_tags($_REQUEST['signature_change']);
                                         $query = "UPDATE `users` SET `signature` = '$signature' WHERE `email`= '$email'";
                                         $sth = $db->prepare($query);
@@ -174,15 +227,15 @@ if (isset($_POST['logout_profile'])) {
                                     }
 
                                     ?>
-                                    </form>
+
                                 </div>
                                 <div class='form-group'>
-                                    <form method="post">
+
                                     <input type="submit" name="logout_profile" id="logout_profile" class="form-control" value="Logout"><br>
-                                    </form>
+
                                 </div>
                                 <div class='form-group'>
-                                    <form method="post">
+
                                     <input type="submit" name="delete_profile" id="delete_profile" class="form-control text-danger" value="DELETE PROFILE"><br>
                                     <?php
                                     if (isset($_POST['delete_profile'])) {
@@ -195,7 +248,7 @@ if (isset($_POST['logout_profile'])) {
                                         logout();
                                     }
                                     ?>
-                                    </form>
+
                                 </div>
 
                             </form>
