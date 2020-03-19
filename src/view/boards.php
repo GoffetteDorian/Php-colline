@@ -27,13 +27,7 @@
         <li class="list-group-item">
           <ul class="list-group">
             <?php $topics = getLatestTopics($pdo, $board["idboards"]); ?>
-            <?php 
-                // echo "<pre>";
-                // print_r($topics);
-                // echo "</pre>";
-              ?>
             <?php foreach($topics as $topic){ ?>
-              
               <a class="nav-link" href="index.php?board=<?php echo $board["name"]; ?>&topic=<?php echo $topic["title"]; ?>">
                 <h4><img src="../public/img/bubble.svg"><?php echo $topic["title"] ?></h4>
               </a>
@@ -41,6 +35,7 @@
             <?php } ?>
           </ul>
         </li>
+      
     <?php } ?>
   </ul>
 <?php } 

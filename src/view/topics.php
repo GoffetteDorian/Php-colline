@@ -29,8 +29,6 @@ if (isset($_POST["delete"])) {
   goToURL($_SERVER["REQUEST_URI"], $_POST["delete"]);
 }
 
-
-
 // BOARDS: SECRET - TOPICS
 // $code = "s3cr3t";
 // $code_validation = false;
@@ -59,32 +57,34 @@ if (isset($_POST["delete"])) {
     $close = $close["close"];
 
     if ($currentUserId == $topicUserId) { ?>
-      <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
-      <button type="submit" name="close" class="btn btn-danger active">Close the topic</button>
-      </form>
+    
+      <div class="closed text-right">
+        <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+          <button type="submit" name="close" class="btnclose active">Close the topic</button>
+        </form>
+      </div>
       <?php } 
    
-    else { ?>
-      <button type="button" name="close" class="btn btn-primary" disable>Close the topic</button>
-    <?php }
-
-
     if(isset($_POST['close'])){ 
-          $close ++;
-        }
-        "UPDATE users SET close = '1' ";
+      $sql = "UPDATE `topics` SET `close` = '1' WHERE `idtopics` = $topicId";
+      $sth = $db->prepare($sql);
+      $sth->execute();
+      }
 
-    if($close === 1){
-      echo "topic is close";
-      }?>
+    $stmt = "SELECT `close` FROM `topics` WHERE `idtopics` = $topicId";
+    $stm = $db->prepare($stmt);
+    $stm->execute();
+    $isClosed = $stm->fetchColumn();
+
+    if ($isClosed === '1') { ?>
+      <h6>Locked topic</h6>
+    <?php } ?>
     
   <!-- --------------------------------------------------------------------------------------------------- -->
 
-
-
   <!-- Showing all messages -->
   <ul class="list-group">
-    <?php 
+    <?php
     $messages = getTopicsMessages($pdo, $topic["idtopics"]);
 
     foreach ($messages as $message) { ?>
@@ -166,6 +166,8 @@ if (isset($_POST["delete"])) {
   </ul>
 
   <!-- Creating a new message -->
+<?php if ($isClosed === '0'){ ?>
+
 <div class="list-group">
     <div class="card-body">
       <form action="create_message.php" method="POST">
@@ -184,6 +186,9 @@ if (isset($_POST["delete"])) {
     </div>
   </div>
 </div>
+
+<?php } ?>
+
 
 <?php 
     } else { ?>

@@ -18,7 +18,7 @@ $host = "mysql";
 $dbname = "mydb";
 $user = "root";
 $pass = "root";
-$db = mysqli_connect($host, $user, $pass, $dbname);
+$db = new PDO("mysql:host=" . $host . "; dbname=" . $dbname, $user, $pass);
 
 function delete_profile($db)
 {

@@ -233,6 +233,35 @@ body {
   }
 }
 
+//CLOSE TOPIC
+h6{
+  color: $darker-color;
+  text-align: center;
+  background-color: $light-color;
+  font-size: 24px;
+  border-radius: 25px;
+  padding: 8px;
+}
+
+.closed{
+  margin-bottom: 8px;
+
+  .btnclose{
+    background-color: $first-color;
+    color: $darker-color;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+  }
+  .btnclose:hover{
+    background-color: $light-color;
+    color: $darker-color;
+    box-shadow: $darkershadow;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+  }
+}
 
 //LIST TOPICS
 
