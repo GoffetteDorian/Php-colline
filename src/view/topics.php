@@ -29,6 +29,8 @@ if (isset($_POST["delete"])) {
   goToURL($_SERVER["REQUEST_URI"], $_POST["delete"]);
 }
 
+
+
 // BOARDS: SECRET - TOPICS
 // $code = "s3cr3t";
 // $code_validation = false;
@@ -48,9 +50,41 @@ if (isset($_POST["delete"])) {
 
   <?php require("./view/breadcrumb.php") ?>
 
+  <!--Close topic--> 
+  <!-- --------------------------------------------------------------------------------------------------- -->    
+  
+  <?php
+    $topicId = $topic["idtopics"];
+    $topicUserId = $topic["users_idusers"];
+    $close = $close["close"];
+
+    if ($currentUserId == $topicUserId) { ?>
+      <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST">
+      <button type="submit" name="close" class="btn btn-danger active">Close the topic</button>
+      </form>
+      <?php } 
+   
+    else { ?>
+      <button type="button" name="close" class="btn btn-primary" disable>Close the topic</button>
+    <?php }
+
+
+    if(isset($_POST['close'])){ 
+          $close ++;
+        }
+        "UPDATE users SET close = '1' ";
+
+    if($close === 1){
+      echo "topic is close";
+      }?>
+    
+  <!-- --------------------------------------------------------------------------------------------------- -->
+
+
+
   <!-- Showing all messages -->
   <ul class="list-group">
-    <?php
+    <?php 
     $messages = getTopicsMessages($pdo, $topic["idtopics"]);
 
     foreach ($messages as $message) { ?>
@@ -128,7 +162,6 @@ if (isset($_POST["delete"])) {
           </div>
         </div>
       </li>
-      <h5><?php echo $message["creation_date"]; ?></h5>
     <?php } ?>
   </ul>
 
