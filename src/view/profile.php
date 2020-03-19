@@ -66,7 +66,9 @@ if (isset($_POST['logout_profile'])) {
                                     ?>
                                     <input type="file" name="file">
                                     <button type="submit" name="avatar">Change avatar</button>
+                                    
                                     <?php
+                                    
                                     if (isset($_POST['avatar'])) {
                                         $file = $_FILES['file'];
                                         
